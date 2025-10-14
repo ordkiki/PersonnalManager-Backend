@@ -1,4 +1,5 @@
-﻿using PersonaManager.Domain.ValuesObject;
+﻿using PersonaManager.Domain.Commons;
+using PersonaManager.Domain.ValuesObject;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace PersonaManager.Domain.Entities
 {
-    public class Child
+    public class Child : BaseEntity
     {
         public Identity? Identity { get; set; }
         public IEnumerable<Education>? Educations { get; set; }
