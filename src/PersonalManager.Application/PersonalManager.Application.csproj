@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Commons\Helpers\" />
+    <Folder Include="Features\Educations\Command\DeleteEducation\" />
+    <Folder Include="Features\Educations\Command\UpdateEducation\" />
+    <Folder Include="Features\Educations\Query\GetAllEducations\" />
+    <Folder Include="Features\Educations\Query\GetOneEducations\" />
+    <Folder Include="Features\Employees\Command\CreateEmployee\" />
+    <Folder Include="Features\Employees\Command\DeleteEmployee\" />
+    <Folder Include="Features\Employees\Command\UpdateEmployee\" />
+    <Folder Include="Features\Employees\Query\GetAllEmployees\" />
+    <Folder Include="Features\Employees\Query\GetOneEmployees\" />
+    <Folder Include="Features\Jobs\Command\CreateJob\" />
+    <Folder Include="Features\Jobs\Command\DeleteJob\" />
+    <Folder Include="Features\Jobs\Command\UpdateJob\" />
+    <Folder Include="Features\Jobs\Query\GetAllJobs\" />
+    <Folder Include="Features\Jobs\Query\GetOneJob\" />
+    <Folder Include="Mappers\" />
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="MediatR" Version="13.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PersonaManager.Domain\PersonaManager.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
