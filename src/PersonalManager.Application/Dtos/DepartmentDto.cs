@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalManager.Application.Features.Departments.Command.UpdateDepartment
+namespace PersonalManager.Application.Dtos
 {
-    public class UpdateDepartmentRequest
+    public class DepartmentDto
     {
+        public Guid Id { get; set; }
         public required string DepartmentName { get; set; }
+        public string? DepartmentCode { get; set; }
         public Guid? ParentDepartmentId { get; set; }
     }
 }
