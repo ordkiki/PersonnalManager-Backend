@@ -12,18 +12,13 @@
     <Folder Include="Features\Educations\Command\UpdateEducation\" />
     <Folder Include="Features\Educations\Query\GetAllEducations\" />
     <Folder Include="Features\Educations\Query\GetOneEducations\" />
-    <Folder Include="Features\Employees\Command\CreateEmployee\" />
     <Folder Include="Features\Employees\Command\DeleteEmployee\" />
-    <Folder Include="Features\Employees\Command\UpdateEmployee\" />
     <Folder Include="Features\Employees\Query\GetAllEmployees\" />
     <Folder Include="Features\Employees\Query\GetOneEmployees\" />
-    <Folder Include="Features\Jobs\Command\CreateJob\" />
-    <Folder Include="Features\Jobs\Command\DeleteJob\" />
-    <Folder Include="Features\Jobs\Command\UpdateJob\" />
-    <Folder Include="Features\Jobs\Query\GetAllJobs\" />
-    <Folder Include="Features\Jobs\Query\GetOneJob\" />
+    <Folder Include="Features\Employees\Query\GetAllEmployeeIdentity\" />
+    <Folder Include="Features\Employees\Query\GetAllEmployeeAdress\" />
+    <Folder Include="Features\Employees\Query\GetAllEmployeeEducation\" />
     <Folder Include="Mappers\" />
-    <Folder Include="Dtos\" />
   </ItemGroup>
 
   <ItemGroup>
