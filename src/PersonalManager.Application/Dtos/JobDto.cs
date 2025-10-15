@@ -1,4 +1,4 @@
-﻿using PersonaManager.Domain.Commons;
+﻿using PersonaManager.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,17 +7,14 @@ using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace PersonaManager.Domain.Entities
+namespace PersonalManager.Application.Dtos
 {
-    public class Job : BaseEntity
+    public class JobDto
     {
+        public Guid Id { get; set; }
         public string? JobCode { get; set; }
         public required string JobTitle { get; set; }
-        
-        [ForeignKey(nameof(Departments))]
+
         public Guid? DepartementId { get; set; }
-        
-        [JsonIgnore]
-        public virtual Department? Departments { get; set; }
     }
 }

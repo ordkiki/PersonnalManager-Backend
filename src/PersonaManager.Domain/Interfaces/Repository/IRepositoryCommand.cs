@@ -11,6 +11,6 @@ namespace PersonaManager.Domain.Interfaces.Repository
     {
         Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default);
         Task<T> UpdateAsync(Guid? id, T entity, CancellationToken cancellationToken = default);
-        Task<bool?> DeleteAsync(Guid? id, CancellationToken cancellationToken = default);
+        Task<bool> DeleteAsync(Guid? id, CancellationToken cancellationToken = default);
     }
 }
