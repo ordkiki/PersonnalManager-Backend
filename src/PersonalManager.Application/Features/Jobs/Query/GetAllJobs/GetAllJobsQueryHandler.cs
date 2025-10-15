@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Jobs.Query.GetAllJobs
 {
-    public class GetAllJobsQueryHandler(IRepositoryQuery<Job> _repo) : IRequestHandler<GetAllJobsQuery, GetAllJobsResponse>
+    public class GetAllJobsQueryHandler(IRepositoryQuery<Job> _repo) : IRequestHandler<GetAllJobsQuery, GetAllJobsQueryResponse>
     {
-        public async Task<GetAllJobsResponse> Handle(GetAllJobsQuery request, CancellationToken cancellationToken)
+        public async Task<GetAllJobsQueryResponse> Handle(GetAllJobsQuery request, CancellationToken cancellationToken)
         {
 
             Expression<Func<Job, bool>> filter = Job => true;
@@ -33,15 +33,15 @@ namespace PersonalManager.Application.Features.Jobs.Query.GetAllJobs
                 page: request.Page ?? 1,
                 orderBy: q => q.OrderByDescending(date => date.CreatedAt));
                 
-            return new GetAllJobsResponse
+            return new GetAllJobsQueryResponse
             {
-                Data = Job.Select(j => new Dtos.JobDto
+                Data = [.. Job.Select(j => new Dtos.JobDto
                 {
                     Id = j.Id,
                     JobTitle = j.JobTitle,
                     JobCode = j.JobCode,
                     DepartementId = j.DepartementId,
-                }).ToList(),
+                })],
                 Total = total,
                 TotalPage = allPage,
             };

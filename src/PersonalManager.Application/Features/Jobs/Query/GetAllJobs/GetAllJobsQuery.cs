@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Jobs.Query.GetAllJobs
 {
-    public class GetAllJobsQuery : IRequest<GetAllJobsResponse>
+    public class GetAllJobsQuery : IRequest<GetAllJobsQueryResponse>
     {
         public string? Search { get; set; } = string.Empty;
         public int? Limit { get; set; } = null;
