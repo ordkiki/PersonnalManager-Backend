@@ -22,5 +22,6 @@ namespace PersonaManager.Domain.Interfaces.Repository
         Task<T?> GetByAsync(Expression<Func<T, bool>> by, Expression<Func<T, T>>? projection = null, List<Expression<Func<T, object>>>? includes = null);
        Task<T?> FindByIdAsync(Guid id, Expression<Func<T, T>>? projection = null);
         Task<IEnumerable<T>?> ListeAllWithOwner(Expression<Func<T, bool>> filter);
+        Task<object?> FindByIdAsync(Guid id, CancellationToken cancellationToken);
     }
 }

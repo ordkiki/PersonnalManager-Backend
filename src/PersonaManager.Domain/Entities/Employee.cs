@@ -20,9 +20,10 @@ namespace PersonaManager.Domain.Entities
         public Adress? Adress { get; set; }
         public Contact? Contact { get; set; }
         public EmployeeStatus? Status { get; set; }
+        public Civility? Civility { get; set; }
 
         [ForeignKey(nameof(Job))]
-        public Guid? PostId { get; set; }
+        public Guid? JobId { get; set; }
         [ForeignKey(nameof(Manager))]
         public Guid? ManagerId { get; set; }
 

@@ -9,6 +9,6 @@ namespace PersonaManager.Domain.Interfaces.Services
 {
     public interface IEmployeeService
     {
-        Task<Employee?> GetByAnyEmailAsync(IEnumerable<string> email);
+        Task<Employee?> GetByEmailAsync(IEnumerable<string> email);
     }
 }

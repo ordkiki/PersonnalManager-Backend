@@ -1,4 +1,5 @@
 ﻿using PersonaManager.Domain.Commons.Helpers;
+using PersonaManager.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,9 @@ namespace PersonaManager.Domain.ValuesObject
             get => _firstName; 
             set => _firstName = value.ToTitleCase();
         }
-        public DateTime? BirthDay { get; set; }
+        public DateTime? BirthDate { get; set; }
+        public Gender? Gender { get; set; }
+        
         public string? BirthPlace { get; set; }
         public string? CIN { get; set; }
         public string? Nationality { get; set; }

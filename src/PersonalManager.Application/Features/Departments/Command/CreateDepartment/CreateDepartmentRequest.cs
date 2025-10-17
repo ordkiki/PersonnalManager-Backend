@@ -8,5 +8,7 @@ namespace PersonalManager.Application.Features.Departments.Command.CreateDepartm
 {
     public class CreateDepartmentRequest
     {
+        public required string DepartmentName { get; set; }
+        public Guid? ParentDepartmentId { get; set; }
     }
 }

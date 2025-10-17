@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonaManager.Domain.Commons;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PersonaManager.Domain.Entities
 {
-    public class Job
+    public class Job : BaseEntity
     {
         public string? JobCode { get; set; }
         public required string JobTitle { get; set; }

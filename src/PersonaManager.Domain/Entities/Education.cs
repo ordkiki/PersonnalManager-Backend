@@ -14,6 +14,7 @@ namespace PersonaManager.Domain.Entities
         public string? Graduation { get; set; }
         public string? FieldOfStudy { get; set; }
         public DateTime? GraduationYear { get; set; }
+        public string? Establishment { get; set; }
         
         [ForeignKey(nameof(Employee))]
         public Guid? EmployeeId { get; set; }
