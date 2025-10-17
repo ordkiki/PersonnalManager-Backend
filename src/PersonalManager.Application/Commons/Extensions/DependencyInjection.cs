@@ -2,6 +2,8 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalManager.Application.Commons.Behaviors;
+using PersonalManager.Application.Features.Banks.Command.CreateBank;
+using PersonalManager.Application.Features.Banks.Query.GetAllBanks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +15,14 @@ namespace PersonalManager.Application.Commons.Extensions
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddValidation(this IServiceCollection services)
+        public static IServiceCollection AddApplication(this IServiceCollection services)
         {
             services.AddMediatR(cfg =>
             {
-                cfg.RegisterServicesFromAssembly(typeof(Features.Banks.Query.GetAllBanks.GetAllBanksQuery).Assembly);
-                cfg.RegisterServicesFromAssembly(typeof(Features.Banks.Command.CreateBank.CreateBankCommand).Assembly);
+                cfg.RegisterServicesFromAssembly(typeof(GetAllBanksQuery).Assembly);
+                cfg.RegisterServicesFromAssembly(typeof(CreateBankCommand).Assembly);
             });
+
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
             return services;

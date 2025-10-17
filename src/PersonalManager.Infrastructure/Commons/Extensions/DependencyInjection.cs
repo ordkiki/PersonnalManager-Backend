@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalManager.Infrastructure.Persistence.PgSql.Contexts;
@@ -17,7 +18,8 @@ namespace PersonalManager.Infrastructure.Commons.Extensions
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<PgSqlContext>(options =>
-                options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
+
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"))
             );
 
             //Repository & UOW
