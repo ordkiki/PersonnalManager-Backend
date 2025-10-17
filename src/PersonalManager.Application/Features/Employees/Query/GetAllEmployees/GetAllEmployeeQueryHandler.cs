@@ -15,6 +15,8 @@ namespace PersonalManager.Application.Features.Employees.Query.GetAllEmployees
         public async Task<GetAllEmployeeQueryResponse> Handle(GetAllEmployeeQuery request, CancellationToken cancellationToken)
         {
             Expression<Func<Employee, bool>> filter = e => true;
+
+
             List<Expression<Func<Employee, object>>> includes = new ()
             {
                 e => e.Banks,

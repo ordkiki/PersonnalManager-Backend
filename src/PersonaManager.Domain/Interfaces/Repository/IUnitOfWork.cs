@@ -8,7 +8,6 @@ namespace PersonaManager.Domain.Interfaces.Repository
 {
     public interface IUnitOfWork
     {
-        Task SaveChangeAsync(CancellationToken cancellationToken);
-        Task SaveChangesAsync(CancellationToken cancellationToken);
+        public Task SaveChangesAsync(CancellationToken cancellationToken);
     }
 }
