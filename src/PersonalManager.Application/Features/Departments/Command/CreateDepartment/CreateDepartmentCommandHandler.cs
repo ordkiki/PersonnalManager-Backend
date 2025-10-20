@@ -23,7 +23,7 @@ namespace PersonalManager.Application.Features.Departments.Command.CreateDepartm
             };
 
             await _repo.CreateAsync(dep, cancellationToken);
-            await Unit.SaveChangeAsync(cancellationToken);
+            await Unit.SaveChangesAsync(cancellationToken);
 
             return new DepartmentDto
             {

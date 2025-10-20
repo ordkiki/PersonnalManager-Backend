@@ -10,6 +10,7 @@ namespace PersonaManager.Domain.ValuesObject
 {
     public class CivilStatus
     {
+        public required MaritalStatus MaritalStatus { get; set; }
         [Column(TypeName = "text")]
         public Identity? Spouse { get; set; }
     }

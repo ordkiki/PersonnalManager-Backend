@@ -58,7 +58,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeB
 
 
             await _repo.CreateAsync(e, cancellationToken);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
 
             return new CreateEmployeeBadgeResponse
             {

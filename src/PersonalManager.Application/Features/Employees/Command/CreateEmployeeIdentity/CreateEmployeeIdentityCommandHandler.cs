@@ -31,7 +31,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeI
                 employee.Identity.Avatar = await _file.UploadAsync(request.Image!, "images/employee") ?? null;
 
             Employee? updatedEmployee = await _repo.UpdateAsync(request.EmployeeId, employee);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
             return new CreateEmployeeIdentityResponse()
             {
                 Id = updatedEmployee.Id,

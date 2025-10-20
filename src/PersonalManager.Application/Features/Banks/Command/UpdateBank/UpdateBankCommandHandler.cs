@@ -24,7 +24,7 @@ namespace PersonalManager.Application.Features.Banks.Command.UpdateBank
             bank.UpdatedAt = DateTime.UtcNow;
 
             Bank updatedBanque = await _repo1.UpdateAsync(request.Id, bank, cancellationToken);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
             return new UpdateBankResponse()
             {
                 Id = updatedBanque.Id,

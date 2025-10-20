@@ -18,7 +18,7 @@ namespace PersonalManager.Application.Features.Departments.Command.DeleteDepartm
             bool? x = await _repo.DeleteAsync(request.Id, cancellationToken);
             if (x == true)
             {
-                await _unit.SaveChangeAsync(cancellationToken);
+                await _unit.SaveChangesAsync(cancellationToken);
                 return true;
             }
             else

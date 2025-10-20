@@ -2,8 +2,12 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using PersonalManager.Application.Commons.Behaviors;
+using PersonalManager.Application.Commons.Utils;
 using PersonalManager.Application.Features.Banks.Command.CreateBank;
 using PersonalManager.Application.Features.Banks.Query.GetAllBanks;
+using PersonalManager.Application.Features.Children.Command.CreateChild;
+using PersonalManager.Application.Features.Jobs.Command.CreateJob;
+using PersonaManager.Domain.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +25,11 @@ namespace PersonalManager.Application.Commons.Extensions
             {
                 cfg.RegisterServicesFromAssembly(typeof(GetAllBanksQuery).Assembly);
                 cfg.RegisterServicesFromAssembly(typeof(CreateBankCommand).Assembly);
+                cfg.RegisterServicesFromAssembly(typeof(CreateJobCommand).Assembly);
+                cfg.RegisterServicesFromAssembly(typeof(CreateChildCommand).Assembly);
             });
+
+            services.AddScoped<ICodeGenerator, CodeGenerator>();
 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
             services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));

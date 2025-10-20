@@ -18,7 +18,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeE
                 throw new ApiException("No employee was found", 400, false);
 
             await _educationRepo.CreateAsync(employee.Educations.Last(), cancellationToken);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
 
             return new CreateEmployeeEducationResponse()
             {

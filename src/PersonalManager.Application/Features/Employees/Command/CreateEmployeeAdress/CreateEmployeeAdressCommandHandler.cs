@@ -25,7 +25,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeA
             };
         
             Employee updatedEmployee = await _repo1.UpdateAsync(request.Id, employee, cancellationToken);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
             return new CreateEmployeeAdressResponse()
             {
                 Id = updatedEmployee.Id,

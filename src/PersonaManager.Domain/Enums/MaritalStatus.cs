@@ -10,6 +10,7 @@ namespace PersonaManager.Domain.Enums
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum MaritalStatus
     {
+        UNKNOWN,
         SINGLE, 
         MARRIED, 
         DIVORCED, 
@@ -18,6 +19,5 @@ namespace PersonaManager.Domain.Enums
         DOMESTIC_PARTNERSHIP, 
         CIVIL_UNION, 
         ENGAGED, 
-        UNKNOWN
     }
 }

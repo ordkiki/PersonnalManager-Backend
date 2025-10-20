@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Jobs.Command.CreateJob
 {
-    public class CreateJobCommandHandler(IRepositoryCommand<Job> _repo, ICodeGenerator _generator) : IRequestHandler<CreateJobCommand, JobDto>
+    public class CreateJobCommandHandler(IRepositoryCommand<Job> _repo, ICodeGenerator _generator, IUnitOfWork _unit) : IRequestHandler<CreateJobCommand, JobDto>
     {
         public async Task<JobDto> Handle(CreateJobCommand request, CancellationToken cancellationToken)
         {
@@ -21,13 +21,15 @@ namespace PersonalManager.Application.Features.Jobs.Command.CreateJob
                 JobCode = await _generator.SetCode(request.JobTitle),
                 DepartementId = request.DepartementId,
             };
-            return await _repo.CreateAsync(job, cancellationToken).ContinueWith(t => new JobDto
+            var result = await _repo.CreateAsync(job, cancellationToken).ContinueWith(t => new JobDto
             {
                 Id = job.Id,
                 JobTitle = t.Result.JobTitle,
                 DepartementId = t.Result.DepartementId,
                 JobCode = t.Result.JobCode,
             });
+            await _unit.SaveChangesAsync(cancellationToken);
+            return result;
         }
     }
 }

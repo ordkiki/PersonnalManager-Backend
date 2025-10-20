@@ -20,7 +20,7 @@ namespace PersonalManager.Application.Features.Employees.Command.UpdateEmployeeS
             employee.Status = request.Status;
 
             Employee? updatedEmployee = await _repo.UpdateAsync(request.EmployeeId, employee);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
 
             return new UpdateEmployeeStatusResponse
             {

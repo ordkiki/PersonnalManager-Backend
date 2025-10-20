@@ -16,7 +16,7 @@ namespace PersonalManager.Application.Features.Departments.Command.UpdateDepartm
         {
             Department dep = await _repo2.FindByIdAsync(request.Id) ?? throw new Exception("No department was found");
             Department updatedDep = await _repo1.UpdateAsync(request.Id, dep, cancellationToken);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
             return new DepartmentDto
             {
                 Id = updatedDep.Id,

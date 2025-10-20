@@ -16,7 +16,7 @@ namespace PersonalManager.Application.Features.Children.Command.DeleteChild
             throw new Exception("Not Implemented");
             //Child? child = await _repo1.Find8/(request.Id, cancellationToken);
             //await _repo.DeleteAsync(request.Id, cancellationToken);
-            //await _unit.SaveChangeAsync(cancellationToken);
+            //await _unit.SaveChangesAsync(cancellationToken);
             //return new DeleteChildResponse()
             //{
             //    Identity = child?.Identity,

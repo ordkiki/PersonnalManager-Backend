@@ -22,7 +22,14 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
             {
                 identity.Property(x => x.FirstName);
                 identity.Property(x => x.LastName).IsRequired();
-                identity.Property(x => x.Avatar);
+                identity.OwnsOne(x => x.Avatar, avatar =>
+                {
+                    avatar.Property(x => x.Extensions);
+                    avatar.Property(x => x.Name);
+                    avatar.Property(x => x.Url);
+                    avatar.Property(x => x.ContentType);
+                    avatar.Property(x => x.Size);
+                });
                 identity.Property(x => x.Nationality);
                 identity.Property(x => x.BirthPlace);
                 identity.Property(x => x.BirthDate);
@@ -39,23 +46,23 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 				adress.Property(x => x.City);
 				adress.Property(x => x.Country);
 			});
+			
+            builder.OwnsOne(x => x.Contact, contact =>
+			{
+				contact.Property(x => x.PhoneNumber);
+				contact.Property(x => x.Email);
+			});
 
 
 			builder.OwnsOne(x => x.CivilStatus, civilStatus =>
 			{
-				civilStatus.Property(x => x.Spouse);
+				civilStatus.OwnsOne(x => x.Spouse, Identity =>
+                {
+                    Identity.OwnsOne(x => x.Avatar);
+                });
 			});
 
 
-
-			builder.Property(e => e.Identity).IsRequired();
-            builder.Property(e => e.Identity).IsRequired();
-            builder.Property(e => e.Identity).IsRequired();
-            builder.Property(e => e.Identity).IsRequired();
-            builder.Property(e => e.Identity).IsRequired();
-            builder.Property(e => e.Identity).IsRequired();
-		
-        
             builder.HasAlternateKey(e => e.JobId);
 
 

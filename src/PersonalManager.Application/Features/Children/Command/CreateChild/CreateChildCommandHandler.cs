@@ -33,7 +33,7 @@ namespace PersonalManager.Application.Features.Children.Command.CreateChild
             };
 
             await _repo.CreateAsync(Child, cancellationToken);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
 
             return new CreateChildResponse
             {

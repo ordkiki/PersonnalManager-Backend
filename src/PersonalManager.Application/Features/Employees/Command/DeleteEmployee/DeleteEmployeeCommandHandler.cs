@@ -14,7 +14,7 @@ namespace PersonalManager.Application.Features.Employees.Command.DeleteEmployee
         public async Task<bool> Handle(DeleteEmployeeCommand request, CancellationToken cancellationToken)
         {
             bool result = await _repo.DeleteAsync(request.Id);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
             return result;
         }
     }

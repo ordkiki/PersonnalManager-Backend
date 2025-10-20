@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonaManager.Domain.Commons.Extensions
+namespace PersonaManager.Domain.Enums
 {
     public enum ErrCode
     {

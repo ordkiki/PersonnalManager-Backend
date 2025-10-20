@@ -18,7 +18,7 @@ namespace PersonalManager.Application.Features.Banks.Command.DeleteBank
                 throw new ApiException("No bank found", 400, false);
 
             await _repo.DeleteAsync(request.Id, cancellationToken);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
             return new DeleteBankResponse()
             {
                 Id = bankDeleted.Id,

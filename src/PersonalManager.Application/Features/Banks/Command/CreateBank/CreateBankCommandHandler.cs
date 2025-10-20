@@ -24,7 +24,7 @@ namespace PersonalManager.Application.Features.Banks.Command.CreateBank
             };
 
             await _repo.CreateAsync(bank, cancellationToken);
-            await _unit.SaveChangeAsync(cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
             return new CreateBankResponse()
             {
                 Id = bank.Id,

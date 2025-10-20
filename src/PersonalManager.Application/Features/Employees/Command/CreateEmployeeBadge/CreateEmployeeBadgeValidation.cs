@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using PersonaManager.Domain.Commons.Extensions;
+using PersonaManager.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
