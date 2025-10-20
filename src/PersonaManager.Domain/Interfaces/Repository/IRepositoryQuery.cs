@@ -20,8 +20,7 @@ namespace PersonaManager.Domain.Interfaces.Repository
             int? totalPage = null
         );
         Task<T?> GetByAsync(Expression<Func<T, bool>> by, Expression<Func<T, T>>? projection = null, List<Expression<Func<T, object>>>? includes = null);
-       Task<T?> FindByIdAsync(Guid id, Expression<Func<T, T>>? projection = null);
+        Task<T?> FindByIdAsync(Guid id, CancellationToken cancellationToken, Expression<Func<T, T>>? projection = null);
         Task<IEnumerable<T>?> ListeAllWithOwner(Expression<Func<T, bool>> filter);
-        Task<object?> FindByIdAsync(Guid id, CancellationToken cancellationToken);
     }
 }

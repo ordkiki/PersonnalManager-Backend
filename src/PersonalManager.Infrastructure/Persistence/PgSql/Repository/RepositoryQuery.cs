@@ -1,4 +1,6 @@
-﻿using PersonaManager.Domain.Commons;
+﻿using Microsoft.EntityFrameworkCore;
+using PersonalManager.Infrastructure.Persistence.PgSql.Contexts;
+using PersonaManager.Domain.Commons;
 using PersonaManager.Domain.Interfaces.Repository;
 using System;
 using System.Collections.Generic;
@@ -11,24 +13,72 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
 {
     public class RepositoryQuery<T> : IRepositoryQuery<T> where T : BaseEntity
     {
-        public Task<T?> FindByIdAsync(Guid id, Expression<Func<T, T>>? projection = null)
+        private readonly PgSqlContext _db;
+        public DbSet<T> dbSet { get; set; }
+
+        public RepositoryQuery(PgSqlContext db)
         {
-            throw new NotImplementedException();
+            _db = db;
+            dbSet = _db.Set<T>();
+        }
+        
+        public async Task<T?> FindByIdAsync(Guid id, CancellationToken cancellationToken, Expression<Func<T, T>>? projection = null)
+        {
+            if (projection != null)
+            {
+                 return await dbSet.Where(x => x.Id == id).Select(projection).FirstOrDefaultAsync(cancellationToken);
+            }
+
+            return await dbSet.FindAsync(id);
         }
 
-        public Task<object?> FindByIdAsync(Guid id, CancellationToken cancellationToken)
+        public async Task<(IEnumerable<T> Data, long total, int AllPage)> FindManyAsync(
+            Expression<Func<T, bool>> filterExpression,
+            List<Expression<Func<T, object>>>? includes = null,
+            Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+            int? limit = null,
+            int? page = null,
+            int? totalPage = null
+        )
         {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet.Where(filterExpression);
+
+            if (includes != null)
+            {
+                foreach (Expression<Func<T, object>> include in includes)
+                    query = query.Include(include);
+            }
+            if (orderBy != null)
+            {
+                query = orderBy(query);
+            }
+            long total = await query.LongCountAsync();
+            totalPage = ((int)total / limit) + 1 ?? 0;
+
+            if (limit.HasValue && page.HasValue)
+            {
+                int skip = (page.Value - 1) * limit.Value;
+                query = query.Skip(skip).Take(limit.Value);
+            }
+
+            List<T> data = await query.ToListAsync();
+            return (data, total, (int)totalPage);
         }
 
-        public Task<(IEnumerable<T> Data, long total, int AllPage)> FindManyAsync(Expression<Func<T, bool>> filterExpression, List<Expression<Func<T, object>>>? includes = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, int? limit = null, int? page = null, int? totalPage = null)
+        public async Task<T?> GetByAsync(Expression<Func<T, bool>> by, Expression<Func<T, T>>? projection = null, List<Expression<Func<T, object>>>? includes = null)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<T?> GetByAsync(Expression<Func<T, bool>> by, Expression<Func<T, T>>? projection = null, List<Expression<Func<T, object>>>? includes = null)
-        {
-            throw new NotImplementedException();
+            IQueryable<T> query = dbSet.Where(by);
+            if (includes != null)
+            {
+                foreach (Expression<Func<T, object>> include in includes)
+                    query = query.Include(include);
+            }
+            if (projection != null)
+            {
+                return await dbSet.Where(by).Select(projection).FirstOrDefaultAsync();
+            }
+            return await dbSet.FirstOrDefaultAsync(by);
+            
         }
 
         public Task<IEnumerable<T>?> ListeAllWithOwner(Expression<Func<T, bool>> filter)

@@ -1,4 +1,6 @@
-﻿using PersonaManager.Domain.Commons;
+﻿using Microsoft.EntityFrameworkCore;
+using PersonalManager.Infrastructure.Persistence.PgSql.Contexts;
+using PersonaManager.Domain.Commons;
 using PersonaManager.Domain.Interfaces.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,19 +12,32 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
 {
     public class RepositoryCommand<T> : IRepositoryCommand<T> where T : BaseEntity
     {
-        public Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default)
+        private readonly PgSqlContext _db;
+        public DbSet<T> dbSet { get; set; }
+        public RepositoryCommand(PgSqlContext db, DbSet<T> dbSet)
         {
-            throw new NotImplementedException();
+            _db = db;
+            this.dbSet = _db.Set<T>();
         }
 
-        public Task<bool> DeleteAsync(Guid? id, CancellationToken cancellationToken = default)
+        public async Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            await dbSet.AddAsync(entity, cancellationToken);
+            return entity;
         }
 
-        public Task<T> UpdateAsync(Guid? id, T entity, CancellationToken cancellationToken = default)
+        public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            T? entity = await dbSet.FindAsync(id);
+            return true;
+        }
+
+        public async Task<T> UpdateAsync(Guid? id, T entity, CancellationToken cancellationToken = default)
+        {
+            T? oldEntity = await dbSet.FindAsync([id], cancellationToken: cancellationToken);
+
+            _db?.Entry(oldEntity).CurrentValues.SetValues(entity);
+            return entity;
         }
     }
 }
