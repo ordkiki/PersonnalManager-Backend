@@ -11,13 +11,13 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeI
     {
         public async Task<CreateEmployeeIdentityResponse> Handle(CreateEmployeeIdentityCommand request, CancellationToken cancellationToken)
         {
-            Employee? employee = await _repo2.FindByIdAsync((Guid)request.EmployeeId, null) ??
+            Employee? employee = await _repo2.FindByIdAsync(request.EmployeeId, cancellationToken) ??
     throw new ApiException("No employee was found", 400, false);
 
             employee.Identity = new Identity()
             {
                 LastName = request.LastName ?? employee.Identity!.LastName,
-                FirstName = request.FirstName ?? employee.Identity?.FirstName,
+                FirstName = request.FirstName ?? employee.Identity!.FirstName,
                 BirthDate = request.BirthDate ?? employee.Identity!.BirthDate,
                 BirthPlace = request.BirthPlace ?? employee.Identity!.BirthPlace,
                 Gender = request.Gender ?? employee.Identity?.Gender,
@@ -35,7 +35,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeI
             return new CreateEmployeeIdentityResponse()
             {
                 Id = updatedEmployee.Id,
-                LastName = updatedEmployee.Identity.LastName,
+                LastName = updatedEmployee.Identity!.LastName,
                 FirstName = updatedEmployee.Identity?.FirstName,
                 BirthDate = updatedEmployee.Identity?.BirthDate,
                 BirthPlace = updatedEmployee.Identity?.BirthPlace,

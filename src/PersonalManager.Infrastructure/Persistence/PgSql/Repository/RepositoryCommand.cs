@@ -13,28 +13,28 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
     public class RepositoryCommand<T> : IRepositoryCommand<T> where T : BaseEntity
     {
         private readonly PgSqlContext _db;
-        public DbSet<T> dbSet { get; set; }
-        public RepositoryCommand(PgSqlContext db, DbSet<T> dbSet)
+        private readonly DbSet<T> _dbSet;
+        public RepositoryCommand(PgSqlContext db)
         {
             _db = db;
-            this.dbSet = _db.Set<T>();
+            _dbSet = _db.Set<T>();
         }
 
         public async Task<T> CreateAsync(T entity, CancellationToken cancellationToken = default)
         {
-            await dbSet.AddAsync(entity, cancellationToken);
+            await _dbSet.AddAsync(entity, cancellationToken);
             return entity;
         }
 
         public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
         {
-            T? entity = await dbSet.FindAsync(id);
+            T? entity = await _dbSet.FindAsync(id);
             return true;
         }
 
         public async Task<T> UpdateAsync(Guid? id, T entity, CancellationToken cancellationToken = default)
         {
-            T? oldEntity = await dbSet.FindAsync([id], cancellationToken: cancellationToken);
+            T? oldEntity = await _dbSet.FindAsync([id], cancellationToken: cancellationToken);
 
             _db?.Entry(oldEntity).CurrentValues.SetValues(entity);
             return entity;

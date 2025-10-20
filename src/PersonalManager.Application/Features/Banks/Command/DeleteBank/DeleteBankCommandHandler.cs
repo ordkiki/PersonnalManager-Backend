@@ -14,7 +14,7 @@ namespace PersonalManager.Application.Features.Banks.Command.DeleteBank
     {
         public async Task<DeleteBankResponse> Handle(DeleteBankCommand request, CancellationToken cancellationToken)
         {
-            Bank? bankDeleted = await _repo2.FindByIdAsync((Guid)request.Id) ??
+            Bank? bankDeleted = await _repo2.FindByIdAsync(request.Id, cancellationToken) ??
                 throw new ApiException("No bank found", 400, false);
 
             await _repo.DeleteAsync(request.Id, cancellationToken);

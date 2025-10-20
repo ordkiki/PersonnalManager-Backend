@@ -16,7 +16,7 @@ namespace PersonalManager.Application.Features.Jobs.Command.UpdateJob
     {
         public async Task<JobDto> Handle(UpdateJobCommand request, CancellationToken cancellationToken)
         {
-            Job ? job = await _repo2.FindByIdAsync(request.Id) ?? throw new ApiException("No job was found",400, false);
+            Job ? job = await _repo2.FindByIdAsync(request.Id, cancellationToken) ?? throw new ApiException("No job was found",400, false);
             job = await _repo1.UpdateAsync(request.Id, new Job
             {
                 JobTitle = request.JobTitle,

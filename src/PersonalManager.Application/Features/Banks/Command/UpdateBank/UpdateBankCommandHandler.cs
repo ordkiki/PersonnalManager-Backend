@@ -13,7 +13,7 @@ namespace PersonalManager.Application.Features.Banks.Command.UpdateBank
     {
         public async Task<UpdateBankResponse> Handle(UpdateBankCommand request, CancellationToken cancellationToken)
         {
-            Bank? bank = await _repo2.FindByIdAsync((Guid)request.Id!, null) ??
+            Bank? bank = await _repo2.FindByIdAsync(request.Id, cancellationToken) ??
                throw new Exception($"we can't find this bank");
 
             bank.Rib = request.Rib ?? bank.Rib;

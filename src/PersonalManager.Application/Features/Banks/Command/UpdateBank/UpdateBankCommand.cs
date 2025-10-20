@@ -10,7 +10,7 @@ namespace PersonalManager.Application.Features.Banks.Command.UpdateBank
 {
     public class UpdateBankCommand : IRequest<UpdateBankResponse>
     {
-        public Guid? Id { get; init; }
+        public required Guid Id { get; init; }
         public string? Rib { get; set; }
         public string? Iban { get; set; }
         public string? CountryCode { get; set; }

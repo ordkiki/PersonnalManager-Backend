@@ -14,15 +14,15 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeE
     {
         public async Task<CreateEmployeeEducationResponse> Handle(CreateEmployeeEducationCommand request, CancellationToken cancellationToken)
         {
-            Employee? employee = await _repo2.FindByIdAsync((Guid)request.EmployeeId, null) ??
+            Employee? employee = await _repo2.FindByIdAsync(request.EmployeeId, cancellationToken) ??
                 throw new ApiException("No employee was found", 400, false);
 
-            await _educationRepo.CreateAsync(employee.Educations.Last(), cancellationToken);
+            await _educationRepo.CreateAsync(employee.Educations!.Last(), cancellationToken);
             await _unit.SaveChangesAsync(cancellationToken);
 
-            return new CreateEmployeeEducationResponse()
+            return new ()
             {
-                Education =  new EmployeeEducation
+                Education =  new ()
                 {
                     EmployeeId = request.EmployeeId,
                     FieldOfStudy = request.FieldOfStudy,

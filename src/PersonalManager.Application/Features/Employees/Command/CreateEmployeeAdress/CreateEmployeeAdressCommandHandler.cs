@@ -10,7 +10,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeA
         public async Task<CreateEmployeeAdressResponse> Handle(CreateEmployeeAdressCommand request, CancellationToken cancellationToken)
         {
 
-            Employee? employee = await _repo2.FindByIdAsync(request.Id) ?? throw new ApiException("no employee was found", 400, false);
+            Employee? employee = await _repo2.FindByIdAsync(request.Id, cancellationToken) ?? throw new ApiException("no employee was found", 400, false);
 
 
             employee.Adress = new()

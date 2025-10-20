@@ -13,7 +13,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeI
 {
     public class CreateEmployeeIdentityCommand : IRequest<CreateEmployeeIdentityResponse>
     {
-        public Guid? EmployeeId { get; set; }
+        public required Guid EmployeeId { get; set; }
         public Gender? Gender { get; set; }
         public string? LastName { get; set; }
         public string? CIN { get; set; }

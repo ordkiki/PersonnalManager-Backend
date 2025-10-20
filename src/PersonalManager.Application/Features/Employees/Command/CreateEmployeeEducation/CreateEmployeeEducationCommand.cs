@@ -16,6 +16,6 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeE
         public string? FieldOfStudy { get; set; }
         public string? Establishment { get; set; }
         public DateTime? GraduationYear { get; set; }
-        public Guid? EmployeeId { get; set; }
+        public required Guid EmployeeId { get; set; }
     }
 }

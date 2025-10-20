@@ -16,7 +16,7 @@ namespace PersonalManager.Application.Features.Departments.Query.GetAllDeprtamen
         public async Task<GetAllDepartmentResponse> Handle(GetAllDepartmentQuery request, CancellationToken cancellationToken)
         {
             Expression<Func<Department, bool>>? filter = Notactive => true;
-            Expression<Func<Department, Department>>? projection = department => new Department();
+            Expression<Func<Department, Department>>? projection = department => null;
             //List<Expression<Func<Department, object>>>? includes = department => department;
             filter = dep =>
               (

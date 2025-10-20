@@ -14,7 +14,7 @@ namespace PersonalManager.Application.Features.Departments.Command.DeleteDepartm
     {
         public async Task<bool> Handle(DeleteDepartmentCommand request, CancellationToken cancellationToken)
         {
-            Department? dep = await _repo2.FindByIdAsync(request.Id) ?? throw new ApiException("no department was found", 400, false);
+            Department? dep = await _repo2.FindByIdAsync(request.Id, cancellationToken) ?? throw new ApiException("no department was found", 400, false);
             bool? x = await _repo.DeleteAsync(request.Id, cancellationToken);
             if (x == true)
             {

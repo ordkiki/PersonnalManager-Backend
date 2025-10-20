@@ -33,6 +33,7 @@ namespace PersonalManager.Infrastructure.Commons.Extensions
             
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<ICodeGenerator, CodeGenerator>();
 
             return services;
         }

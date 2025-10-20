@@ -14,7 +14,7 @@ namespace PersonalManager.Application.Features.Employees.Command.UpdateEmployeeS
     {
         public async Task<UpdateEmployeeStatusResponse> Handle(UpdateEmployeeStatusCommand request, CancellationToken cancellationToken)
         {
-            Employee? employee = await _repo2.FindByIdAsync((Guid)request.EmployeeId, null) ??
+            Employee? employee = await _repo2.FindByIdAsync(request.EmployeeId, cancellationToken) ??
    throw new ApiException("No employee was found", 400, false);
 
             employee.Status = request.Status;

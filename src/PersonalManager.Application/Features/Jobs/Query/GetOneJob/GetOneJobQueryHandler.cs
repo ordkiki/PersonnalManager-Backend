@@ -15,7 +15,7 @@ namespace PersonalManager.Application.Features.Jobs.Query.GetOneJob
     {
         public async Task<JobDto> Handle(GetOneJobQuery request, CancellationToken cancellationToken)
         {
-            Job job = await _repo.FindByIdAsync(request.Id) ?? throw new ApiException("no Job were found", 400, false);
+            Job job = await _repo.FindByIdAsync(request.Id, cancellationToken) ?? throw new ApiException("no Job were found", 400, false);
             return new JobDto
             {
                 Id = job.Id,

@@ -29,7 +29,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeB
             Job j = new () { JobTitle = ""};
             if (request.JobId is not null)
             {
-                j = await _Jobrepo.FindByIdAsync((Guid)request.JobId) ??
+                j = await _Jobrepo.FindByIdAsync((Guid)request.JobId, cancellationToken) ??
                    throw new ApiException("no poste found", 400, false);
             }
             else request.JobId = null;
@@ -37,6 +37,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeB
                 Employee e = new()
                 {
                     Matricule = await _generator.GenerateMatricule("", ""),
+                    
                     Identity = new()
                     {
                         FirstName = request.FirstName,
@@ -45,6 +46,12 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeB
                         Gender = request.Gender,
                     },
                     Civility = request.Civility,
+                    
+                    CivilStatus = new PersonaManager.Domain.ValuesObject.CivilStatus()
+                    { 
+                        MaritalStatus = MaritalStatus.UNKNOWN
+                    },
+
                     Contact = new()
                     {
                         Email = request.Email,
@@ -68,6 +75,9 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeB
                 Civility = request.Civility,
                 Gender = request.Gender.ToString(),
                 PosteName = j.JobTitle,
+                Telephone = string.Join("/", request.PhoneNumber),
+                Email = string.Join("/", request.Email),
+                
             };
         }
     }

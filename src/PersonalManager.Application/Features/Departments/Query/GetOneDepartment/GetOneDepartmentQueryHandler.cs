@@ -14,7 +14,7 @@ namespace PersonalManager.Application.Features.Departments.Query.GetOneDepartmen
     {
         public async Task<DepartmentDto> Handle(GetOneDepartmentQuery request, CancellationToken cancellationToken)
         {
-            Department department = await _repo.FindByIdAsync(request.Id) ?? throw new Exception("No department was found");
+            Department department = await _repo.FindByIdAsync(request.Id, cancellationToken) ?? throw new Exception("No department was found");
             return new DepartmentDto
             {
                 Id = department.Id,

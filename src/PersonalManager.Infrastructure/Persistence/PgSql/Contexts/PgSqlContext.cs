@@ -12,6 +12,8 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Contexts
     {
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Job> Jobs { get; set; }
+        public DbSet<Child> Children { get; set; }
+        public DbSet<Education> Educations { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Bank> Banks { get; set; }
         public DbSet<Contract> Contracts { get; set; }

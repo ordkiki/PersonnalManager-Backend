@@ -14,22 +14,21 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
     public class RepositoryQuery<T> : IRepositoryQuery<T> where T : BaseEntity
     {
         private readonly PgSqlContext _db;
-        public DbSet<T> dbSet { get; set; }
-
+        private readonly DbSet<T> _dbSet;
         public RepositoryQuery(PgSqlContext db)
         {
             _db = db;
-            dbSet = _db.Set<T>();
+            _dbSet = _db.Set<T>();
         }
-        
+
         public async Task<T?> FindByIdAsync(Guid id, CancellationToken cancellationToken, Expression<Func<T, T>>? projection = null)
         {
             if (projection != null)
             {
-                 return await dbSet.Where(x => x.Id == id).Select(projection).FirstOrDefaultAsync(cancellationToken);
+                 return await _dbSet.Where(x => x.Id == id).Select(projection).FirstOrDefaultAsync(cancellationToken);
             }
 
-            return await dbSet.FindAsync(id);
+            return await _dbSet.FindAsync(id);
         }
 
         public async Task<(IEnumerable<T> Data, long total, int AllPage)> FindManyAsync(
@@ -41,7 +40,7 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
             int? totalPage = null
         )
         {
-            IQueryable<T> query = dbSet.Where(filterExpression);
+            IQueryable<T> query = _dbSet.Where(filterExpression);
 
             if (includes != null)
             {
@@ -67,7 +66,7 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
 
         public async Task<T?> GetByAsync(Expression<Func<T, bool>> by, Expression<Func<T, T>>? projection = null, List<Expression<Func<T, object>>>? includes = null)
         {
-            IQueryable<T> query = dbSet.Where(by);
+            IQueryable<T> query = _dbSet.Where(by);
             if (includes != null)
             {
                 foreach (Expression<Func<T, object>> include in includes)
@@ -75,9 +74,9 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
             }
             if (projection != null)
             {
-                return await dbSet.Where(by).Select(projection).FirstOrDefaultAsync();
+                return await _dbSet.Where(by).Select(projection).FirstOrDefaultAsync();
             }
-            return await dbSet.FirstOrDefaultAsync(by);
+            return await _dbSet.FirstOrDefaultAsync(by);
             
         }
 

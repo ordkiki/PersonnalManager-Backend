@@ -14,7 +14,7 @@ namespace PersonalManager.Application.Features.Jobs.Command.DeleteJob
     {
         public async Task<bool> Handle(DeleteJobCommand request, CancellationToken cancellationToken)
         {
-            Job x = await _repo2.FindByIdAsync(request.Id) ?? throw new ApiException("No Job was found",400, false);
+            Job x = await _repo2.FindByIdAsync(request.Id, cancellationToken) ?? throw new ApiException("No Job was found",400, false);
             if (await _repo.DeleteAsync(request.Id, cancellationToken))
             {
                 await _unit.SaveChangesAsync(cancellationToken);

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalManager.Application.Commons.Utils
+namespace PersonalManager.Infrastructure.Persistence.PgSql.Services
 {
     public class CodeGenerator : ICodeGenerator
     {

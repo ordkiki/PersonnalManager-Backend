@@ -9,6 +9,6 @@ namespace PersonalManager.Application.Features.Educations.Command.DeleteEducatio
 {
     public class DeleteEducationCommand : IRequest<bool>
     {
-        public required Guid? Id { get; set; }
+        public required Guid Id { get; set; }
     }
 }

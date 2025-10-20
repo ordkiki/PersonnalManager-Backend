@@ -12,7 +12,7 @@ namespace PersonaManager.Domain.Entities
     public class Department : BaseEntity
     {
         public string? DepartmentCode { get; set; }
-        public string? DepartmentName { get; set; }
+        public required string DepartmentName { get; set; }
         
         [ForeignKey(nameof(ParentDepartment))]
         public Guid? ParentDepartmentId { get; set; }
