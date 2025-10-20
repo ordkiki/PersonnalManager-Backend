@@ -32,6 +32,16 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
             return true;
         }
 
+        public async Task<bool> IsExist(Guid id, CancellationToken cancellationToken = default)
+        {
+            T? entity = await _dbSet.FindAsync(id);
+            if (entity == null)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task<T> UpdateAsync(Guid? id, T entity, CancellationToken cancellationToken = default)
         {
             T? oldEntity = await _dbSet.FindAsync([id], cancellationToken: cancellationToken);

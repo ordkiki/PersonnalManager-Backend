@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PersonaManager.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace PersonaManager.Domain.Interfaces.Services
     public interface ICodeGenerator
     {
         Task<string> SetCode(string entityName);
+        Task<string> GenerateDepartmentCode();
+        Task<string> GenerateJobCode();
         Task<string> GenerateFormat(string prefix, string name, string propertyCode);
         Task<string> GenerateMatricule(string prefix, string propertyCode);
     }

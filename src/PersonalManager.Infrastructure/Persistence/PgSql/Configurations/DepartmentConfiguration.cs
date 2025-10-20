@@ -15,7 +15,9 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 			base.Configure(builder);
 
 			builder.Property(d => d.DepartmentName).IsRequired();
-			builder.Property(d => d.DepartmentCode);
+			builder.Property(d => d.DepartmentCode).HasMaxLength(4).IsRequired();
+			builder.HasIndex(d => d.DepartmentCode).IsUnique();
+
 		}
 	}
 }
