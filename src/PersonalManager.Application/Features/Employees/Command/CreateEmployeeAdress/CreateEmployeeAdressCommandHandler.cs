@@ -10,26 +10,27 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeA
         public async Task<CreateEmployeeAdressResponse> Handle(CreateEmployeeAdressCommand request, CancellationToken cancellationToken)
         {
 
-            Employee? employee = await _repo2.FindByIdAsync(request.Id, cancellationToken) ?? throw new ApiException("no employee was found", 400, false);
+            Employee? employee = await _repo2.FindByIdAsync(request.EmployeeId, cancellationToken) ?? throw new ApiException("no employee was found", 400, false);
 
 
             employee.Adress = new()
             {
-                City = request.City,
-                Area = request.Area,
-                Street = request.Street,
-                PostalCode = request.PostalCode,
-                District = request.District,
-                Region = request.Region,
-                Country = request.Country
+                City = request.City ?? employee.Adress?.City,
+                Area = request.Area ?? employee.Adress?.Area,
+                Street = request.Street ?? employee.Adress?.Street,
+                PostalCode = request.PostalCode ?? employee.Adress?.PostalCode,
+                District = request.District ?? employee.Adress?.District,
+                Region = request.Region ?? employee.Adress?.Region,
+                Country = request.Country ?? employee.Adress?.Country
             };
         
-            Employee updatedEmployee = await _repo1.UpdateAsync(request.Id, employee, cancellationToken);
+            Employee updatedEmployee = await _repo1.UpdateAsync(request.EmployeeId, employee, cancellationToken);
             await _unit.SaveChangesAsync(cancellationToken);
             return new CreateEmployeeAdressResponse()
             {
                 Id = updatedEmployee.Id,
-                Adress = updatedEmployee.Adress
+                Adress = updatedEmployee.Adress,
+                
             };
         }
     }

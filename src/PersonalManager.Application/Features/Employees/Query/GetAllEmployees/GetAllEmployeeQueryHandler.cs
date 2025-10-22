@@ -16,6 +16,30 @@ namespace PersonalManager.Application.Features.Employees.Query.GetAllEmployees
         {
             Expression<Func<Employee, bool>> filter = e => true;
 
+            filter = employee =>
+
+               (
+                    string.IsNullOrEmpty(request.Search) ||
+                    (
+                        employee.Matricule!.Contains(request.Search!, StringComparison.CurrentCultureIgnoreCase) ||
+                        employee.Identity!.FirstName!.Contains(request.Search!, StringComparison.CurrentCultureIgnoreCase) ||
+                        employee.Identity.Gender.ToString()!.Contains(request.Search!, StringComparison.CurrentCultureIgnoreCase) ||
+                        employee.Status.ToString()!.Contains(request.Search!, StringComparison.CurrentCultureIgnoreCase) ||
+                        employee.CreatedAt.ToString().Contains(request.Search!, StringComparison.CurrentCultureIgnoreCase)
+                    )
+               )
+               &&
+               (
+                   string.IsNullOrEmpty(request.JobTitle) ||
+                   (employee.Job != null && employee.Job.JobTitle!.Equals(request.JobTitle))
+               )
+              
+               &&
+               (
+                    string.IsNullOrEmpty(request.Status.ToString()) ||
+                    (employee.Status != null && employee.Status.Equals(request.Status))
+               )
+            ;
 
             List<Expression<Func<Employee, object>>> includes = new ()
             {

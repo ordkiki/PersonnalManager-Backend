@@ -14,5 +14,8 @@ namespace PersonalManager.Application.Features.Employees.Query.GetAllEmployees
         public int? Page { get; set; }
         public string? OrderBy { get; set; }
         public bool? SortazAZ { get; set; }
+        public string? JobTitle {  get; set; }
+        public string? Status {  get; set; }
+        public string? DepartmentName {  get; set; }
     }
 }

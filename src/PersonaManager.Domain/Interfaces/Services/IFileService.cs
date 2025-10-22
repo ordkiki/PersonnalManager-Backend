@@ -12,7 +12,7 @@ namespace PersonaManager.Domain.Interfaces.Services
     {
         Task<Resource> UploadAsync(IFormFile file, string folder);
         Task<Resource> UploadMany(List<IFormFile> files, string folder);
-        Task<Resource> DeleteOneFileAsync(string url);
-        Task<Resource> DeleteManyFileAsync(List<string> urls);
+        void DeleteOneFileAsync(Resource file);
+        void DeleteManyFileAsync(List<Resource> files);
     }
 }

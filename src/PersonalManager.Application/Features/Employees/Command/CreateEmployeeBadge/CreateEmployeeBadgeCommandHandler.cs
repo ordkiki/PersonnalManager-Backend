@@ -42,7 +42,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeB
                     {
                         FirstName = request.FirstName,
                         LastName = request.LastName,
-                        Avatar = await _file.UploadAsync(request.Avatar, "employee"),
+                        Avatar = await _file.UploadAsync(request.Avatar, Folder.EMPLOYEE.ToString()),
                         Gender = request.Gender,
                     },
                     Civility = request.Civility,

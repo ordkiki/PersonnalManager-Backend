@@ -11,7 +11,6 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeB
 {
     public class CreateEmployeeBadgeCommand : IRequest<CreateEmployeeBadgeResponse>
     {
-        public required Guid Id { get; set; }
         public string? LastName { get; set; }
         public string? Matricule { get; init; }
         public required string FirstName { get; set; }

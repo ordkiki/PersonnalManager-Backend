@@ -9,7 +9,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeA
 {
     public class CreateEmployeeAdressCommand  : IRequest<CreateEmployeeAdressResponse>
     {
-        public Guid Id { get; set; }
+        public Guid EmployeeId { get; set; }
         public string? City { get; set; }
         public string? Area { get; set; }
         public string? Street { get; set; }

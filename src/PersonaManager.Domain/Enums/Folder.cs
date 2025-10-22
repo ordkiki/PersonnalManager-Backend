@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 namespace PersonaManager.Domain.Enums
 {
     [JsonConverter(typeof(JsonStringEnumConverter))]
-    public enum Gender
+    public enum Folder
     {
-        MALE,
-        FEMALE
+        EMPLOYEE,
+        SPOUSE,
+        CHILD
     }
 }
