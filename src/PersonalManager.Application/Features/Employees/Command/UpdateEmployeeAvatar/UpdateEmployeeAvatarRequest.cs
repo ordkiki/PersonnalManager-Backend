@@ -1,4 +1,4 @@
-﻿using PersonaManager.Domain.ValuesObject;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +7,5 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Employees.Command.UpdateEmployeeAvatar
 {
-    public class UpdateEmployeeAvatarResponse
-    {
-        public Guid EmployeeId { get; set; }
-        public Resource? Avatar { get; set; }
-    }
+    public record UpdateEmployeeAvatarRequest(IFormFile Avatar);
 }

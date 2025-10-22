@@ -31,9 +31,7 @@ namespace PersonalManager.Application.Features.Employees.Query.GetOneEmployees
                         employee.Status.ToString()!.Contains(request.Term!, StringComparison.CurrentCultureIgnoreCase) ||
                         employee.CreatedAt.ToString().Contains(request.Term!, StringComparison.CurrentCultureIgnoreCase)
                     )
-               )
-               
-            ;
+               );
 
             List<Expression<Func<Employee, object?>>> inc = new()
             {
@@ -79,15 +77,24 @@ namespace PersonalManager.Application.Features.Employees.Query.GetOneEmployees
 
                 Contracts = employee.Contracts.Select(c => new EmployeeContractsResponse()
                 {
+                    Id = c.Id,
                     ContratReference = c.ContratReference,
                     EndDate = c.EndDate,
-                    Id = c.Id,
                     IsActive = c.IsActive,
                     SalaryMensual = c.SalaryMensual,
                     StartDate = c.StartDate,
                     TypeContract = c.TypeContrat.ToString(),
                    
                 }).ToList(),
+
+                Educations = employee.Educations.Select(e => new EmployeeEducationResponse()
+                {
+                    Id = e.Id, 
+                    Establishment = e.Establishment,
+                    FieldOfStudy = e.FieldOfStudy,
+                    Graduation = e.Graduation,
+                    GraduationYear = e.GraduationYear,
+                }).ToList()
             };    
         }
     }

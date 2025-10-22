@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.OpenApi.Models;
+using PersonalManager.Api.Middleware;
 using PersonalManager.Application.Commons.Extensions;
 using PersonalManager.Infrastructure.Commons.Extensions;
 using PersonalManager.Infrastructure.Persistence.PgSql.Contexts;
@@ -55,6 +56,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseMiddleware<ExceptionHandling>();
 
 app.MapControllers();
 
