@@ -19,9 +19,9 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Services
             throw new NotImplementedException();
         }
 
-        public Task<string> SetCode(string entityName)
+        public string SetCode(string entityName)
         {
-            throw new NotImplementedException();
+            return "bonjour";
         }
     }
 }

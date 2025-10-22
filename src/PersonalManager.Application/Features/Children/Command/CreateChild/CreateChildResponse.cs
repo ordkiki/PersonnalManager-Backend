@@ -12,7 +12,6 @@ namespace PersonalManager.Application.Features.Children.Command.CreateChild
     public record CreateChildResponse
     {
         public Identity? Identity { get; set; }
-        public IEnumerable<Education>? Educations { get; set; }
         public bool? IsDependent { get; set; }
     }
 }

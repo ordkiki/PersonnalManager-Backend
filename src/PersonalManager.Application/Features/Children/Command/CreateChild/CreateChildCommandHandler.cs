@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using PersonaManager.Domain.Entities;
+using PersonaManager.Domain.Enums;
 using PersonaManager.Domain.Interfaces.Repository;
 using PersonaManager.Domain.Interfaces.Services;
-using PersonaManager.Domain.ValuesObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +19,13 @@ namespace PersonalManager.Application.Features.Children.Command.CreateChild
             {
                 Identity = new()
                 {
-                    LastName = request.Identity?.LastName,
-                    FirstName = request.Identity.FirstName,
-                    BirthDate = request.Identity.BirthDate,
-                    BirthPlace = request.Identity.BirthPlace,
-                    CIN = request.Identity.CIN,
-                    Nationality = request.Identity.Nationality,
-                    Avatar = request.Avatar != null ? await _file.UploadAsync(request.Avatar, "child") : null,
+                    LastName = request?.LastName,
+                    FirstName = request!.FirstName!,
+                    BirthDate = request?.BirthDate,
+                    BirthPlace = request?.BirthPlace,
+                    CIN = request?.CIN,
+                    Nationality = request?.Nationality,
+                    Avatar = request!.Avatar! != null ? await _file.UploadAsync(request.Avatar, Folder.CHILD.ToString()) : null,
                 },
                 
                 IsDependent = request.IsDependent,
@@ -38,7 +38,6 @@ namespace PersonalManager.Application.Features.Children.Command.CreateChild
             return new CreateChildResponse
             {
                 Identity = Child.Identity,
-                Educations = Child.Educations,
                 IsDependent = Child.IsDependent
             };
         }

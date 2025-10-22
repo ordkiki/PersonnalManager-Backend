@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using PersonaManager.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,16 @@ namespace PersonalManager.Application.Features.Children.Command.CreateChild
 {
     public class CreateChildRequest
     {
-        public IdentityRequest? Identity { get; set; }
-        public IEnumerable<EducationRequest>? Educations { get; set; }
+        public Gender? Gender { get; set; }
+        public string? LastName { get; set; }
+        public string? FirstName { get; set; }
+        public DateTime? BirthDate { get; set; }
+        public string? BirthPlace { get; set; }
+        public string? Nationality { get; set; }
+        public IFormFile? Avatar { get; set; }
         public bool? IsDependent { get; set; }
+
+        public required Guid? EmployeeId { get; set; }
     }
     public record IdentityRequest
     {

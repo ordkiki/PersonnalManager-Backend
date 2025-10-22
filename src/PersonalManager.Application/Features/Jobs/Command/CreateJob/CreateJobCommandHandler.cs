@@ -18,10 +18,10 @@ namespace PersonalManager.Application.Features.Jobs.Command.CreateJob
             Job job = new()
             {
                 JobTitle = request.JobTitle,
-                JobCode = await _generator.SetCode(request.JobTitle),
+                JobCode = _generator.SetCode(request.JobTitle),
                 DepartementId = request.DepartementId,
             };
-            var result = await _repo.CreateAsync(job, cancellationToken).ContinueWith(t => new JobDto
+            JobDto result = await _repo.CreateAsync(job, cancellationToken).ContinueWith(t => new JobDto
             {
                 Id = job.Id,
                 JobTitle = t.Result.JobTitle,

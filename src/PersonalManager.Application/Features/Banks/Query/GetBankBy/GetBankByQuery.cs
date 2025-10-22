@@ -9,9 +9,6 @@ namespace PersonalManager.Application.Features.Banks.Query.GetBankBy
 {
     public class GetBankByQuery : IRequest<GetBankByResponse>
     {
-        public required Guid? Id { get; init; }
-        public string? Iban { get; init; }
-        public string? Bic { get; init; }
-        public string? CountryCode { get; init; }
+        public required Guid Id { get; init; }
     }
 }

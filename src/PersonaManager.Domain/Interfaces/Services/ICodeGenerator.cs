@@ -8,7 +8,7 @@ namespace PersonaManager.Domain.Interfaces.Services
 {
     public interface ICodeGenerator
     {
-        Task<string> SetCode(string entityName);
+        string SetCode(string entityName);
         Task<string> GenerateFormat(string prefix, string name, string propertyCode);
         Task<string> GenerateMatricule(string prefix, string propertyCode);
     }

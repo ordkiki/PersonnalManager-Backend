@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using PersonaManager.Domain.Entities;
+using PersonaManager.Domain.Enums;
 using PersonaManager.Domain.ValuesObject;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,16 @@ namespace PersonalManager.Application.Features.Children.Command.CreateChild
 {
     public class CreateChildCommand : IRequest<CreateChildResponse>
     {
-        public Identity? Identity { get; set; }
+        public Gender? Gender { get; set; }
+        public string? LastName { get; set; }
+        public string? FirstName { get; set; }
+        public DateTime? BirthDate { get; set; }
+        public string? BirthPlace { get; set; }
+        public string? CIN { get; set; }
+        public string? Nationality { get; set; }
         public IFormFile? Avatar { get; set; }
-        public IEnumerable<Education>? Educations { get; set; }
         public bool? IsDependent { get; set; }
+
         public required Guid? EmployeeId { get; set; }
     }
 }

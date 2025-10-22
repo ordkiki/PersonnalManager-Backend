@@ -9,20 +9,13 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Children.Command.DeleteChild
 {
-    public class DeleteChildCommandHandler(IRepositoryCommand<Child> _repo, IRepositoryCommand<Child> _repo1, IUnitOfWork _unit) : IRequestHandler<DeleteChildCommand, DeleteChildResponse>
+    public class DeleteChildCommandHandler(IRepositoryCommand<Child> _repo, IRepositoryCommand<Child> _repo1, IUnitOfWork _unit) : IRequestHandler<DeleteChildCommand, bool>
     {
-        public async Task<DeleteChildResponse> Handle(DeleteChildCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteChildCommand request, CancellationToken cancellationToken)
         {
-            throw new Exception("Not Implemented");
-            //Child? child = await _repo1.Find8/(request.Id, cancellationToken);
-            //await _repo.DeleteAsync(request.Id, cancellationToken);
-            //await _unit.SaveChangesAsync(cancellationToken);
-            //return new DeleteChildResponse()
-            //{
-            //    Identity = child?.Identity,
-            //    Educations = child?.Educations.ToList(),
-            //    IsDependent = child?.IsDependent
-            //};
+            await _repo.DeleteAsync(request.Id, cancellationToken);
+            await _unit.SaveChangesAsync(cancellationToken);
+            return true;
         }
     }
 }

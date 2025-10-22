@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Children.Command.DeleteChild
 {
-    public class DeleteChildCommand : IRequest<DeleteChildResponse>
+    public class DeleteChildCommand : IRequest<bool>
     {
         public required Guid Id { get; set; }
     }

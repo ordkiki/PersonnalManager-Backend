@@ -10,7 +10,6 @@ namespace PersonalManager.Application.Features.Banks.Query.GetBankBy
     {
         public async Task<GetBankByResponse> Handle(GetBankByQuery request, CancellationToken cancellationToken)
         {
-            Expression<Func<Bank, bool>> filter = b => b.Iban == request.Iban;
 
             
             List<Expression<Func<Bank, object>>> includes =
@@ -18,7 +17,7 @@ namespace PersonalManager.Application.Features.Banks.Query.GetBankBy
                 b => b.Employee!
             ];
 
-            Bank bank = await _repo.GetByAsync(filter, null, includes) ?? throw new KeyNotFoundException($"Bank with IBAN {request.Iban} not found.");
+            Bank bank = await _repo.FindByIdAsync(request.Id, cancellationToken) ?? throw new KeyNotFoundException($"bank not found.");
 
             return new GetBankByResponse
             {
