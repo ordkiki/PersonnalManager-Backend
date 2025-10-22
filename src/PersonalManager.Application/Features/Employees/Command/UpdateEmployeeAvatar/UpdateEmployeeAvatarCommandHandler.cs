@@ -18,7 +18,7 @@ namespace PersonalManager.Application.Features.Employees.Command.UpdateEmployeeA
         {
             Employee? emp = await _repo2.FindByIdAsync(request.EmployeeId, cancellationToken) ?? throw new ApiException("no employee found", 400, false);
 
-            emp.Identity!.Avatar = await _fileService.UploadAsync(request.Avatar, Folder.EMPLOYEE.ToString());
+            emp.Identity!.Avatar = await _fileService.UploadAsync(request.Avatar, Folder.EMPLOYEES.ToString());
 
    
             await _unit.SaveChangesAsync(cancellationToken);

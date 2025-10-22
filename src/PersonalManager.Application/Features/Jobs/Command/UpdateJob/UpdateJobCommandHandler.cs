@@ -21,7 +21,7 @@ namespace PersonalManager.Application.Features.Jobs.Command.UpdateJob
             {
                 JobTitle = request.JobTitle,
                 DepartementId = request.DepartementId,
-                JobCode = (request.JobTitle == null)? request.JobCode : await _generator.SetCode(request.JobTitle)
+                JobCode = (request.JobTitle == null)? request.JobCode : _generator.SetCode(request.JobTitle)
             }, cancellationToken);
             return new JobDto
             {

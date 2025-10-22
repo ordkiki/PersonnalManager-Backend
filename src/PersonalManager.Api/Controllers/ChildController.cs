@@ -53,8 +53,8 @@ namespace PersonalManager.Api.Controllers
                 Success = true
             });
         }
-        [HttpPut]
-        public async Task<IActionResult> Update([FromRoute] Guid Id, UpdateChildRequest request)
+        [HttpPut("{Id}")]
+        public async Task<IActionResult> Update([FromRoute] Guid Id,[FromForm] UpdateChildRequest request)
         {
             UpdateChildResponse result = await _mediator.Send(new UpdateChildCommand()
             {
@@ -78,7 +78,7 @@ namespace PersonalManager.Api.Controllers
                 Success = true
             });
         }
-
+        [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] GetAllChildrenQuery request)
         {
             GetAllChildResponse result = await _mediator.Send(request);

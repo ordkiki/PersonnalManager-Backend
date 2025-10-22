@@ -27,7 +27,7 @@ namespace PersonalManager.Application.Features.Children.Command.UpdateChild
                 BirthPlace = request.BirthPlace,
                 Gender = request.Gender,
                 Nationality = request.Nationality,
-                Avatar = await _fileService.UploadAsync(request.Avatar, Folder.CHILD.ToString())
+                Avatar = await _fileService.UploadAsync(request.Avatar, Folder.CHILDREN.ToString())
             };
             child.IsDependent = request.IsDependent;
             

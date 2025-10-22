@@ -18,7 +18,7 @@ namespace PersonalManager.Application.Features.Departments.Command.CreateDepartm
             Department dep = new()
             {
                 DepartmentName = request.DepartmentName,
-                DepartmentCode = await _generator.SetCode(request.DepartmentName),
+                DepartmentCode =  _generator.SetCode(request.DepartmentName),
                 ParentDepartmentId = request.ParentDepartmentId
             };
 
