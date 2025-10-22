@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <Folder Include="Commons\Helpers\" />
+    <Folder Include="Commons\Utils\" />
     <Folder Include="Features\Educations\Command\DeleteEducation\" />
     <Folder Include="Features\Educations\Command\UpdateEducation\" />
     <Folder Include="Features\Educations\Query\GetAllEducations\" />
