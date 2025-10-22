@@ -16,6 +16,7 @@ namespace PersonalManager.Application.Features.Children.Command.CreateChild
         public DateTime? BirthDate { get; set; }
         public string? BirthPlace { get; set; }
         public string? Nationality { get; set; }
+        public string? CIN { get; set; }
         public IFormFile? Avatar { get; set; }
         public bool? IsDependent { get; set; }
 

@@ -30,6 +30,7 @@ namespace PersonalManager.Application.Features.Children.Command.UpdateChild
                 Avatar = await _fileService.UploadAsync(request.Avatar, Folder.CHILD.ToString())
             };
             child.IsDependent = request.IsDependent;
+            
             Child updatedChild = await _repo.UpdateAsync(request.Id, child, cancellationToken);
             await _unit.SaveChangesAsync(cancellationToken);
 

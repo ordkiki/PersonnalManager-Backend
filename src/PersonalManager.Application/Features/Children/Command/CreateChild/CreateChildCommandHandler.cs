@@ -25,7 +25,7 @@ namespace PersonalManager.Application.Features.Children.Command.CreateChild
                     BirthPlace = request?.BirthPlace,
                     CIN = request?.CIN,
                     Nationality = request?.Nationality,
-                    Avatar = request!.Avatar! != null ? await _file.UploadAsync(request.Avatar, Folder.CHILD.ToString()) : null,
+                    Avatar = request!.Avatar! != null ? await _file.UploadAsync(request.Avatar, Folder.CHILDREN.ToString()) : null,
                 },
                 
                 IsDependent = request.IsDependent,

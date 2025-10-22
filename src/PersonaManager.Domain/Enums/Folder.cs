@@ -10,8 +10,8 @@ namespace PersonaManager.Domain.Enums
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public enum Folder
     {
-        EMPLOYEE,
-        SPOUSE,
-        CHILD
+        EMPLOYEES,
+        SPOUSES,
+        CHILDREN
     }
 }
