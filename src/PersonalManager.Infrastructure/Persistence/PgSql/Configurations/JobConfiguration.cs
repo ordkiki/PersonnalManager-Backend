@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PersonaManager.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,10 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 
 			builder.Property(c => c.JobTitle).IsRequired();
 			builder.Property(c => c.JobCode).IsRequired();
-		}
-	}
+            builder.HasOne(e => e.Departments)
+                          .WithMany()
+                          .HasForeignKey(e => e.DepartementId)
+                          .OnDelete(DeleteBehavior.SetNull);
+        }
+    }
 }

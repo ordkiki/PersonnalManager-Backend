@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PersonaManager.Domain.Entities;
+using PersonaManager.Domain.ValuesObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +18,6 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
             builder.Property(e => e.Matricule).IsRequired();
             builder.Property(e => e.Civility);
 
-    
-            
             builder.OwnsOne(x => x.Identity, identity => 
             {
                 identity.Property(x => x.FirstName);
@@ -53,7 +53,6 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 				contact.Property(x => x.Email);
 			});
 
-
 			builder.OwnsOne(x => x.CivilStatus, civilStatus =>
 			{
 				civilStatus.OwnsOne(x => x.Spouse, Identity =>
@@ -63,10 +62,14 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 			});
 
 
-            builder.HasAlternateKey(e => e.JobId);
+            builder.HasOne(e => e.Manager).WithMany().HasForeignKey(e => e.ManagerId).OnDelete(DeleteBehavior.SetNull);
+            builder.HasOne(e => e.Job).WithMany().HasForeignKey(e => e.JobId).OnDelete(DeleteBehavior.SetNull);
 
-
-
+            builder.HasMany(e => e.Banks).WithOne().OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(e => e.Children).WithOne().OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(e => e.Contracts).WithOne().OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(e => e.Children).WithOne().OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(e => e.Educations).WithOne().OnDelete(DeleteBehavior.Cascade);
 		}
         
     }

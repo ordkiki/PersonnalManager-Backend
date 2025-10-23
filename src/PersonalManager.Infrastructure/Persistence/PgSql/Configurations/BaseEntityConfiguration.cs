@@ -17,6 +17,7 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 
 			builder.Property(x => x.CreatedAt)
 				.IsRequired()
+				.HasDefaultValueSql("NOW() AT TIME ZONE 'UTC'")
 				//.HasDefaultValueSql("NOW() AT TIME ZONE 'UTC'")
 				.ValueGeneratedOnAdd();
 

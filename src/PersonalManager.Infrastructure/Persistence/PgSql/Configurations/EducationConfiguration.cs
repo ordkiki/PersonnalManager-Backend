@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PersonaManager.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,10 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
             builder.Property(e => e.FieldOfStudy).IsRequired();
             builder.Property(e => e.GraduationYear);
             builder.Property(e => e.Graduation).IsRequired();
+
+            builder.HasOne(e => e.Employee).WithMany().HasForeignKey(e => e.EmployeeId).OnDelete(DeleteBehavior.Cascade);
+            
+            builder.HasOne(e => e.Child).WithMany().HasForeignKey(e => e.EmployeeId).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }
