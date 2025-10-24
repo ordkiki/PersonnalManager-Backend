@@ -12,7 +12,7 @@ namespace PersonaManager.Domain.Interfaces.Repository
     public interface IRepositoryQuery<T> where T : BaseEntity
     {
         Task<(IEnumerable<T> Data, long total, int AllPage)> FindManyAsync(
-            Expression<Func<T, bool>> filterExpression,
+            Expression<Func<T, bool>>? filterExpression,
             List<Expression<Func<T, object>>>? includes = null,
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
             int? limit = null,

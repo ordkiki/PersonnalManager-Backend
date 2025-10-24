@@ -54,7 +54,8 @@ namespace PersonalManager.Infrastructure.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("Rib")
                         .IsRequired()
@@ -87,7 +88,8 @@ namespace PersonalManager.Infrastructure.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<bool?>("IsDependent")
                         .HasColumnType("boolean");
@@ -130,7 +132,8 @@ namespace PersonalManager.Infrastructure.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<float?>("SalaryMensual")
                         .HasColumnType("real");
@@ -173,7 +176,8 @@ namespace PersonalManager.Infrastructure.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<Guid?>("ParentDepartmentId")
                         .HasColumnType("uuid");
@@ -233,7 +237,8 @@ namespace PersonalManager.Infrastructure.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
@@ -265,7 +270,8 @@ namespace PersonalManager.Infrastructure.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<Guid?>("JobId")
                         .HasColumnType("uuid");
@@ -308,7 +314,8 @@ namespace PersonalManager.Infrastructure.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean");
+                        .HasColumnType("boolean")
+                        .HasDefaultValue(false);
 
                     b.Property<string>("JobCode")
                         .IsRequired()

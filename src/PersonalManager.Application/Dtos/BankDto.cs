@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalManager.Application.Features.Banks.Command.CreateBank
+namespace PersonalManager.Application.Dtos
 {
-    public class CreateBankResponse
+    public class BankDto
     {
         public required Guid Id { get; init; }
         public required string Rib { get; set; }

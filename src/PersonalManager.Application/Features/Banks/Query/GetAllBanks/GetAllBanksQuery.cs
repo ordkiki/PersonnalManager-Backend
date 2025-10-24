@@ -11,6 +11,7 @@ namespace PersonalManager.Application.Features.Banks.Query.GetAllBanks
     {
         public string? Search { get; set; } = string.Empty;
         public int? Limit { get; set; } = null;
+        public Guid ? EmployeeId { get; set; } = null;
         public int? Page { get; set; } = null;
     }
 }

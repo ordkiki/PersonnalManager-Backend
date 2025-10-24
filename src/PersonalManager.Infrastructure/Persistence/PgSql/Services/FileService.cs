@@ -37,7 +37,7 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Services
                 throw new Exception("No file found");
             }
 
-            string? basePath = configuration.GetSection("File:BasePath").Value;
+            string? basePath = configuration.GetSection("Files:BasePath").Value;
 
             if (string.IsNullOrWhiteSpace(basePath))
                 throw new Exception("No destination path found in configuration");

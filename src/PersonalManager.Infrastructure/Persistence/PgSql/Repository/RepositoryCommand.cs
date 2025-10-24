@@ -29,6 +29,7 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
         public async Task<bool> DeleteAsync(Guid id, CancellationToken cancellationToken = default)
         {
             T? entity = await _dbSet.FindAsync(id);
+            if (entity is not null) _dbSet.Remove(entity);
             return true;
         }
 

@@ -16,7 +16,7 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Services
 
         public Task<string> GenerateMatricule(string prefix, string propertyCode)
         {
-            throw new NotImplementedException();
+            return Task.FromResult("EMP-004");
         }
 
         public string SetCode(string entityName)

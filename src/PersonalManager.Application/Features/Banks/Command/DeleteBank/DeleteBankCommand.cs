@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Banks.Command.DeleteBank
 {
-    public class DeleteBankCommand : IRequest<DeleteBankResponse>
+    public class DeleteBankCommand : IRequest<bool>
     {
         public required Guid Id { get; init; }
     }

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PersonalManager.Application.Dtos;
 using PersonalManager.Application.Features.Banks.Command.CreateBank;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Banks.Command.UpdateBank
 {
-    public class UpdateBankCommand : IRequest<UpdateBankResponse>
+    public class UpdateBankCommand : IRequest<BankDto>
     {
         public required Guid Id { get; init; }
         public string? Rib { get; set; }

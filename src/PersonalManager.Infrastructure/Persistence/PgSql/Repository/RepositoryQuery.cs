@@ -32,7 +32,7 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Repository
         }
 
         public async Task<(IEnumerable<T> Data, long total, int AllPage)> FindManyAsync(
-            Expression<Func<T, bool>> filterExpression,
+            Expression<Func<T, bool>>? filterExpression,
             List<Expression<Func<T, object>>>? includes = null,
             Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
             int? limit = null,

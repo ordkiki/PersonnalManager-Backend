@@ -13,6 +13,5 @@ namespace PersonalManager.Application.Features.Banks.Command.CreateBank
         public string? CountryCode { get; set; }
         public string? Bic { get; set; }
         public string? AccountLabel { get; set; }
-        public required Guid EmployeeId { get; init; }
     }
 }

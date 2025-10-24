@@ -1,6 +1,6 @@
 ﻿namespace PersonalManager.Application.Features.Banks.Query.GetBankBy
 {
-    public class GetBankByResponse
+    public class GetBankByIdResponse
     {
         public Guid? Id { get; init; }
         public string? Rib { get; set; }

@@ -69,9 +69,10 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeB
 
             return new CreateEmployeeBadgeResponse
             {
+                Id = e.Id,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                Matricule = request.Matricule,
+                Matricule = e.Matricule,
                 Civility = request.Civility,
                 Gender = request.Gender.ToString(),
                 PosteName = j.JobTitle,

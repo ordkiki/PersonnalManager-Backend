@@ -23,13 +23,13 @@ namespace PersonalManager.Application.Features.Employees.Query.GetOneEmployees
                (
                     string.IsNullOrEmpty(request.Term) ||
                     (
-                        employee.Matricule!.Contains(request.Term!, StringComparison.CurrentCultureIgnoreCase) ||
-                        employee.Id.ToString()!.Equals(request.Term!, StringComparison.CurrentCultureIgnoreCase) ||
-                        employee.Identity!.FirstName!.Contains(request.Term!, StringComparison.CurrentCultureIgnoreCase) ||
-                        employee.Identity!.LastName!.Contains(request.Term!, StringComparison.CurrentCultureIgnoreCase) ||
-                        employee.Identity.Gender.ToString()!.Contains(request.Term!, StringComparison.CurrentCultureIgnoreCase) ||
-                        employee.Status.ToString()!.Contains(request.Term!, StringComparison.CurrentCultureIgnoreCase) ||
-                        employee.CreatedAt.ToString().Contains(request.Term!, StringComparison.CurrentCultureIgnoreCase)
+                        employee.Matricule!.Contains(request.Term!) ||
+                        employee.Id.ToString()!.Equals(request.Term!) ||
+                        employee.Identity!.FirstName!.Contains(request.Term!) ||
+                        employee.Identity!.LastName!.Contains(request.Term!) ||
+                        employee.Identity.Gender.ToString()!.Contains(request.Term!) ||
+                        employee.Status.ToString()!.Contains(request.Term!) ||
+                        employee.CreatedAt.ToString().Contains(request.Term!)
                     )
                );
 

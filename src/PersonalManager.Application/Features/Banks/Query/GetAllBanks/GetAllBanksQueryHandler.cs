@@ -24,6 +24,7 @@ namespace PersonalManager.Application.Features.Banks.Query.GetAllBanks
                   (bank.Bic != null && bank.Bic!.ToLower().Contains(request.Search.ToLower()));
             }
 
+
             (IEnumerable<Bank> banks, long total, int allPage) = await _repo.FindManyAsync(
                filterExpression: filter,
                includes: null,

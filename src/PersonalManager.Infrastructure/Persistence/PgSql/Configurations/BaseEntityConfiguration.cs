@@ -22,7 +22,7 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 				.ValueGeneratedOnAdd();
 
 			builder.Property(x => x.UpdatedAt);
-			builder.Property(x => x.IsDeleted).IsRequired(true).ValueGeneratedOnAdd();
+			builder.Property(x => x.IsDeleted).IsRequired(true).HasDefaultValue(false);
 			
 		}
 	}

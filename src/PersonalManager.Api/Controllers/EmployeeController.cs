@@ -148,12 +148,12 @@ namespace PersonalManager.Api.Controllers
             GetAllEmployeeQueryResponse result = await _mediator.Send(request);
 
 
-            return Ok(new ApiResponse<IEnumerable<Employee>>
+            return Ok(new ApiResponse<IEnumerable<EmployeeInformationResponse>>
             {
                 Code = 200,
                 Success = true,
                 Data = result.Data,
-                Message = "Delete with success",
+                Message = "retrieved with success",
                 Meta = new Meta()
                 {
                     Limit = request.Limit,

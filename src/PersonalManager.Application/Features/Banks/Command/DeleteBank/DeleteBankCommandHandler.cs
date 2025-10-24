@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PersonalManager.Application.Dtos;
 using PersonaManager.Domain.Entities;
 using PersonaManager.Domain.Exceptions;
 using PersonaManager.Domain.Interfaces.Repository;
@@ -10,25 +11,20 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Banks.Command.DeleteBank
 {
-    public class DeleteBankCommandHandler(IRepositoryCommand<Bank> _repo, IRepositoryQuery<Bank> _repo2, IUnitOfWork _unit) : IRequestHandler<DeleteBankCommand, DeleteBankResponse>
+    public class DeleteBankCommandHandler(IRepositoryCommand<Bank> _repo, IRepositoryQuery<Bank> _repo2, IUnitOfWork _unit) : IRequestHandler<DeleteBankCommand, bool>
     {
-        public async Task<DeleteBankResponse> Handle(DeleteBankCommand request, CancellationToken cancellationToken)
+        public async Task<bool> Handle(DeleteBankCommand request, CancellationToken cancellationToken)
         {
-            Bank? bankDeleted = await _repo2.FindByIdAsync(request.Id, cancellationToken) ??
-                throw new ApiException("No bank found", 400, false);
-
-            await _repo.DeleteAsync(request.Id, cancellationToken);
-            await _unit.SaveChangesAsync(cancellationToken);
-            return new DeleteBankResponse()
+            try
             {
-                Id = bankDeleted.Id,
-                EmployeeId = bankDeleted.EmployeeId,
-                Iban = bankDeleted.Iban,
-                Rib = bankDeleted.Rib,
-                AccountLabel = bankDeleted.AccountLabel,
-                Bic = bankDeleted.Bic,
-                CountryCode = bankDeleted.CountryCode
-            };
+                await _repo.DeleteAsync(request.Id, cancellationToken);
+                await _unit.SaveChangesAsync(cancellationToken);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new ApiException("No bank found", 400, false);
+            }
         }
     }
 }

@@ -19,7 +19,6 @@
     <Folder Include="Features\Employees\Query\GetAllEmployeeIdentity\" />
     <Folder Include="Features\Employees\Query\GetAllEmployeeAdress\" />
     <Folder Include="Features\Employees\Query\GetAllEmployeeEducation\" />
-    <Folder Include="Mappers\" />
   </ItemGroup>
 
   <ItemGroup>

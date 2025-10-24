@@ -23,10 +23,10 @@ namespace PersonalManager.Application.Features.Children.Query.GetAllChildren
                (
                     string.IsNullOrEmpty(request.Search) ||
                     (
-                        employee.Identity!.FirstName!.Contains(request.Search!, StringComparison.CurrentCultureIgnoreCase) ||
-                        employee.Identity!.LastName!.Contains(request.Search!, StringComparison.CurrentCultureIgnoreCase) ||
-                        employee.Identity.Gender.ToString()!.Contains(request.Search!, StringComparison.CurrentCultureIgnoreCase) ||
-                        employee.CreatedAt.ToString().Contains(request.Search!, StringComparison.CurrentCultureIgnoreCase)
+                        employee.Identity!.FirstName!.Contains(request.Search!) ||
+                        employee.Identity!.LastName!.Contains(request.Search!) ||
+                        employee.Identity.Gender.ToString()!.Contains(request.Search!) ||
+                        employee.CreatedAt.ToString().Contains(request.Search!)
                     )
                )
                &&

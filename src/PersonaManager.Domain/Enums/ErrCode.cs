@@ -15,6 +15,7 @@ namespace PersonaManager.Domain.Enums
         NOT_GUID,
         NEGATIVE_VALUE,
         INDEX_OUT_OF_RANGE,
-        NOT_IN_ENUM
+        NOT_IN_ENUM,
+        INVALID_FORMAT
     }
 }

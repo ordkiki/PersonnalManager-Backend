@@ -18,20 +18,20 @@ namespace PersonalManager.Api.Controllers
     public class BankController(IMediator _mediator) : ControllerBase
     {
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromForm] CreateBankRequest request)
+        [HttpPost("{EmployeeId}")]
+        public async Task<IActionResult> Create([FromRoute] Guid EmployeeId, [FromForm] CreateBankRequest request)
         {
-            var result = await _mediator.Send(new CreateBankCommand()
+            BankDto result = await _mediator.Send(new CreateBankCommand()
             {
                 AccountLabel = request.AccountLabel,
                 Bic = request.Bic,
                 CountryCode = request.CountryCode,
-                EmployeeId = request.EmployeeId,
+                EmployeeId = EmployeeId,
                 Iban = request.Iban,
                 Rib = request.Rib
             });
 
-            return Ok(new ApiResponse<CreateBankResponse>()
+            return Ok(new ApiResponse<BankDto>()
             {
                 Code = 200,
                 Success = true,
@@ -44,7 +44,7 @@ namespace PersonalManager.Api.Controllers
         public async Task<IActionResult> Delete([FromQuery] DeleteBankCommand request)
         {
             await _mediator.Send(new DeleteBankCommand() { Id = request.Id });
-            return Ok(new ApiResponse<DeleteBankResponse>
+            return Ok(new ApiResponse<BankDto>
             {
                 Code = 200,
                 Success = true,
@@ -57,7 +57,7 @@ namespace PersonalManager.Api.Controllers
         [HttpPut("{Id}")]
         public async Task<IActionResult> Update([FromRoute] Guid Id, [FromForm] UpdateBankRequest request)
         {
-            UpdateBankResponse result = await _mediator.Send(new UpdateBankCommand()
+            BankDto result = await _mediator.Send(new UpdateBankCommand()
             {
                 Id = Id,
                 AccountLabel = request.AccountLabel,
@@ -66,7 +66,7 @@ namespace PersonalManager.Api.Controllers
                 Iban = request.Iban,
                 Rib = request.Rib
             });
-            return Ok(new ApiResponse<UpdateBankResponse>()
+            return Ok(new ApiResponse<BankDto>()
             {
                 Code = 200,
                 Success = true,
