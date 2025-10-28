@@ -12,7 +12,7 @@ using PersonalManager.Infrastructure.Persistence.PgSql.Contexts;
 namespace PersonalManager.Infrastructure.Migrations
 {
     [DbContext(typeof(PgSqlContext))]
-    [Migration("20251023082155_PersonalManager")]
+    [Migration("20251027175702_PersonalManager")]
     partial class PersonalManager
     {
         /// <inheritdoc />
@@ -121,7 +121,7 @@ namespace PersonalManager.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasDefaultValueSql("NOW() AT TIME ZONE 'UTC'");
 
-                    b.Property<Guid?>("EmployeeId")
+                    b.Property<Guid>("EmployeeId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid?>("EmployeeId1")
@@ -141,7 +141,7 @@ namespace PersonalManager.Infrastructure.Migrations
                     b.Property<float?>("SalaryMensual")
                         .HasColumnType("real");
 
-                    b.Property<DateTime>("StartDate")
+                    b.Property<DateTime?>("StartDate")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("TypeContrat")
@@ -193,6 +193,8 @@ namespace PersonalManager.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartmentCode");
+
                     b.HasIndex("ParentDepartmentId");
 
                     b.HasIndex("ParentDepartmentId1");
@@ -232,7 +234,7 @@ namespace PersonalManager.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime?>("GraduationYear")
+                    b.Property<DateTime>("GraduationYear")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid?>("IdChild")
@@ -321,7 +323,6 @@ namespace PersonalManager.Infrastructure.Migrations
                         .HasDefaultValue(false);
 
                     b.Property<string>("JobCode")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("JobTitle")
@@ -442,7 +443,8 @@ namespace PersonalManager.Infrastructure.Migrations
                     b.HasOne("PersonaManager.Domain.Entities.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("PersonaManager.Domain.Entities.Employee", null)
                         .WithMany("Contracts")

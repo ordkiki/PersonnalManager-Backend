@@ -45,7 +45,7 @@ namespace PersonalManager.Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
-                    JobCode = table.Column<string>(type: "text", nullable: false),
+                    JobCode = table.Column<string>(type: "text", nullable: true),
                     JobTitle = table.Column<string>(type: "text", nullable: false),
                     DepartementId = table.Column<Guid>(type: "uuid", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW() AT TIME ZONE 'UTC'"),
@@ -208,11 +208,11 @@ namespace PersonalManager.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     ContratReference = table.Column<string>(type: "text", nullable: true),
                     TypeContrat = table.Column<int>(type: "integer", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     IsActive = table.Column<bool>(type: "boolean", nullable: true),
                     SalaryMensual = table.Column<float>(type: "real", nullable: true),
-                    EmployeeId = table.Column<Guid>(type: "uuid", nullable: true),
+                    EmployeeId = table.Column<Guid>(type: "uuid", nullable: false),
                     EmployeeId1 = table.Column<Guid>(type: "uuid", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false, defaultValueSql: "NOW() AT TIME ZONE 'UTC'"),
                     UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -242,7 +242,7 @@ namespace PersonalManager.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uuid", nullable: false),
                     Graduation = table.Column<string>(type: "text", nullable: false),
                     FieldOfStudy = table.Column<string>(type: "text", nullable: false),
-                    GraduationYear = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    GraduationYear = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     Establishment = table.Column<string>(type: "text", nullable: false),
                     EmployeeId = table.Column<Guid>(type: "uuid", nullable: true),
                     IdChild = table.Column<Guid>(type: "uuid", nullable: true),
@@ -305,6 +305,11 @@ namespace PersonalManager.Infrastructure.Migrations
                 name: "IX_Contracts_EmployeeId1",
                 table: "Contracts",
                 column: "EmployeeId1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Departments_DepartmentCode",
+                table: "Departments",
+                column: "DepartmentCode");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Departments_ParentDepartmentId",

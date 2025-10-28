@@ -19,10 +19,11 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
            
                 builder.Property(c => c.SalaryMensual);
                 builder.Property(c => c.TypeContrat).IsRequired(true);
-                builder.Property(c => c.StartDate).IsRequired(true);
+                builder.Property(c => c.StartDate).IsRequired(false);
                 builder.Property(c => c.EndDate).IsRequired(false);
                 builder.Property(c => c.ContratReference).IsRequired(false);
-
+                builder.Property(c => c.SalaryMensual).IsRequired(false);
+                builder.Property(c => c.EmployeeId).IsRequired(true);
                 builder.HasOne(c => c.Employee).WithMany().HasForeignKey(c => c.EmployeeId).OnDelete(DeleteBehavior.Cascade);
         }
     }

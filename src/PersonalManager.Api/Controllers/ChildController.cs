@@ -12,12 +12,12 @@ namespace PersonalManager.Api.Controllers
     [Route("[Controller]")]
     public class ChildController(IMediator _mediator) : ControllerBase
     {
-        [HttpPost]
-        public async Task<IActionResult> Create([FromForm] CreateChildRequest request)
+        [HttpPost("{EmployeeId}")]
+        public async Task<IActionResult> Create([FromRoute] Guid EmployeeId, [FromForm] CreateChildRequest request)
         {
             CreateChildResponse result = await _mediator.Send(new CreateChildCommand()
             {
-                EmployeeId = request.EmployeeId,
+                EmployeeId = EmployeeId,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
                 Avatar = request.Avatar,

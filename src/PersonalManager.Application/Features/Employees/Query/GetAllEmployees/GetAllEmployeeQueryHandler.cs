@@ -32,6 +32,10 @@ namespace PersonalManager.Application.Features.Employees.Query.GetAllEmployees
                     (request.Status == null) ||
                     (employee.Status != null && employee.Status == request.Status)
                )
+               &&
+               (
+                    (!request.IsDeleted.HasValue) || (employee.IsDeleted == request.IsDeleted)
+               )
             ;
 
             List<Expression<Func<Employee, object?>>> includes = new()
@@ -46,7 +50,7 @@ namespace PersonalManager.Application.Features.Employees.Query.GetAllEmployees
 
             (IEnumerable<Employee> result, long total, int allPage) = await _repo.FindManyAsync(
                 filterExpression:  filter,
-                includes,
+                includes: includes,
                 limit: request.Limit,
                 page: request.Page,
                 orderBy: q => q.OrderByDescending(dep => dep.CreatedAt));

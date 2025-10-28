@@ -42,9 +42,9 @@ namespace PersonalManager.Api.Controllers
         }
 
         [HttpPut("Identity")]
-        public async Task<IActionResult> UpdateIdentity([FromRoute] Guid Id, [FromForm] CreateEmployeeIdentityRequest request)
+        public async Task<IActionResult> UpdateIdentity([FromRoute] Guid Id, [FromForm] UpdateEmployeeIdentityRequest request)
         {
-            CreateEmployeeIdentityResponse result = await _mediator.Send(new CreateEmployeeIdentityCommand
+            UpdateEmployeeIdentityResponse result = await _mediator.Send(new UpdateEmployeeIdentityCommand
             {
                 EmployeeId = Id,
                 FirstName = request?.FirstName,
@@ -57,7 +57,7 @@ namespace PersonalManager.Api.Controllers
                 Image = request?.Image,
 
             });
-            return Ok(new ApiResponse<CreateEmployeeIdentityResponse>
+            return Ok(new ApiResponse<UpdateEmployeeIdentityResponse>
             {
                 Code = 200,
                 Data = result,
@@ -68,9 +68,9 @@ namespace PersonalManager.Api.Controllers
         }
 
         [HttpPut("Adress")]
-        public async Task<IActionResult> UpdateAdress([FromRoute] Guid Id, [FromForm] CreateEmployeeAdressCommand request)
+        public async Task<IActionResult> UpdateAdress([FromRoute] Guid Id, [FromForm] UpdateEmployeeAdressCommand request)
         {
-            CreateEmployeeAdressResponse result = await _mediator.Send(new CreateEmployeeAdressCommand
+            UpdateEmployeeAdressResponse result = await _mediator.Send(new UpdateEmployeeAdressCommand
             {
                 EmployeeId = Id,
                 Area = request?.Area,
@@ -81,7 +81,7 @@ namespace PersonalManager.Api.Controllers
                 Street = request?.Street,
                 Region = request?.Region,
             });
-            return Ok(new ApiResponse<CreateEmployeeAdressResponse>
+            return Ok(new ApiResponse<UpdateEmployeeAdressResponse>
             {
                 Code = 200,
                 Data = result,
@@ -92,11 +92,25 @@ namespace PersonalManager.Api.Controllers
         }
 
         [HttpDelete]
-        public async Task<IActionResult> UpdateAdress([FromQuery] Guid EmployeeId)
+        public async Task<IActionResult> DeleteForce([FromQuery] Guid EmployeeId)
         {
             var result = await _mediator.Send(new DeleteEmployeeCommand() { Id = EmployeeId });
 
-            return Ok(new ApiResponse<CreateEmployeeAdressResponse>
+            return Ok(new ApiResponse<Employee>
+            {
+                Code = 200,
+                Data = null,
+                Message = "force delete with success",
+                Meta = null,
+                Success = true
+            });
+        }
+        [HttpPut("{EmployeeId}")]
+        public async Task<IActionResult> DeletePartial([FromRoute] Guid EmployeeId)
+        {
+            await _mediator.Send(new DeleteEmployeeCommand() { Id = EmployeeId });
+
+            return Ok(new ApiResponse<Employee>
             {
                 Code = 200,
                 Data = null,

@@ -15,8 +15,10 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 		{
 			base.Configure(builder);
 
-			builder.Property(c => c.JobTitle).IsRequired();
-			builder.Property(c => c.JobCode).IsRequired();
+			builder.Property(c => c.JobTitle).IsRequired(true);
+			builder.Property(c => c.JobCode).IsRequired(false);
+			builder.Property(c => c.DepartementId).IsRequired(false);
+
             builder.HasOne(e => e.Departments)
                           .WithMany()
                           .HasForeignKey(e => e.DepartementId)

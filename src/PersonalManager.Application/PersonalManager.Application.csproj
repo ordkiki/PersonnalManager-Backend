@@ -13,7 +13,6 @@
     <Folder Include="Features\Educations\Command\UpdateEducation\" />
     <Folder Include="Features\Educations\Query\GetAllEducations\" />
     <Folder Include="Features\Educations\Query\GetOneEducations\" />
-    <Folder Include="Features\Employees\Command\DeleteEmployee\" />
     <Folder Include="Features\Employees\Query\GetAllEmployees\" />
     <Folder Include="Features\Employees\Query\GetOneEmployees\" />
     <Folder Include="Features\Employees\Query\GetAllEmployeeIdentity\" />

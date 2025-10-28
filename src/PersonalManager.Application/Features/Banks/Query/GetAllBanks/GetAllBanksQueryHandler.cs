@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using PersonalManager.Application.Dtos;
 using PersonaManager.Domain.Entities;
 using PersonaManager.Domain.Interfaces.Repository;
 using System;
@@ -35,7 +36,7 @@ namespace PersonalManager.Application.Features.Banks.Query.GetAllBanks
 
             return new GetAllBanksResponse()
             {
-                Data = banks.Select(bank => new Bank
+                Data = banks.Select(bank => new BankDto
                 {
                     Id = bank.Id,
                     EmployeeId = bank.EmployeeId,

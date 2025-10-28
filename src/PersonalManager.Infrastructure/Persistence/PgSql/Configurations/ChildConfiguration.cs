@@ -21,6 +21,7 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
                 child.Property(identity => identity.Nationality).IsRequired(false);
                 child.Property(identity => identity.BirthDate).IsRequired(false);
                 child.Property(identity => identity.BirthPlace).IsRequired(false);
+                
                 builder.OwnsOne(x => x.Identity, identity =>
                 {
                     identity.OwnsOne(x => x.Avatar, resource =>

@@ -5,9 +5,9 @@ using PersonaManager.Domain.Interfaces.Repository;
 
 namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeAdress
 {
-    public class CreateEmployeeAdressCommandHandler(IRepositoryQuery<Employee> _repo2, IRepositoryCommand<Employee> _repo1,IUnitOfWork _unit) : IRequestHandler<CreateEmployeeAdressCommand, CreateEmployeeAdressResponse>
+    public class UpdateEmployeeAdressCommandHandler(IRepositoryQuery<Employee> _repo2, IRepositoryCommand<Employee> _repo1,IUnitOfWork _unit) : IRequestHandler<UpdateEmployeeAdressCommand, UpdateEmployeeAdressResponse>
     {
-        public async Task<CreateEmployeeAdressResponse> Handle(CreateEmployeeAdressCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateEmployeeAdressResponse> Handle(UpdateEmployeeAdressCommand request, CancellationToken cancellationToken)
         {
 
             Employee? employee = await _repo2.FindByIdAsync(request.EmployeeId, cancellationToken) ?? throw new ApiException("no employee was found", 400, false);
@@ -26,7 +26,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeA
         
             Employee updatedEmployee = await _repo1.UpdateAsync(request.EmployeeId, employee, cancellationToken);
             await _unit.SaveChangesAsync(cancellationToken);
-            return new CreateEmployeeAdressResponse()
+            return new UpdateEmployeeAdressResponse()
             {
                 Id = updatedEmployee.Id,
                 Adress = updatedEmployee.Adress,

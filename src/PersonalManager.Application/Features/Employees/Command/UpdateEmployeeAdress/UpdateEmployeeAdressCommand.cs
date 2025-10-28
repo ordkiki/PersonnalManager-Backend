@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeAdress
 {
-    public class CreateEmployeeAdressCommand  : IRequest<CreateEmployeeAdressResponse>
+    public class UpdateEmployeeAdressCommand  : IRequest<UpdateEmployeeAdressResponse>
     {
         public Guid EmployeeId { get; set; }
         public string? City { get; set; }

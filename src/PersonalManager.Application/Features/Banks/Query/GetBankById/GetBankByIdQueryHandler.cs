@@ -1,14 +1,16 @@
 ﻿using MediatR;
+using PersonalManager.Application.Dtos;
 using PersonaManager.Domain.Entities;
+using PersonalManager.Application.Mappers;
 using PersonaManager.Domain.Interfaces.Repository;
 using System.Linq.Expressions;
 
 namespace PersonalManager.Application.Features.Banks.Query.GetBankBy
 {
-    public class GetBankByQueryHandler(IRepositoryQuery<Bank> _repo)
-        : IRequestHandler<GetBankByQuery, GetBankByResponse>
+    public class GetBankByIdQueryHandler(IRepositoryQuery<Bank> _repo)
+        : IRequestHandler<GetBankByIdQuery, BankDto>
     {
-        public async Task<GetBankByResponse> Handle(GetBankByQuery request, CancellationToken cancellationToken)
+        public async Task<BankDto> Handle(GetBankByIdQuery request, CancellationToken cancellationToken)
         {
 
             
@@ -19,16 +21,7 @@ namespace PersonalManager.Application.Features.Banks.Query.GetBankBy
 
             Bank bank = await _repo.FindByIdAsync(request.Id, cancellationToken) ?? throw new KeyNotFoundException($"bank not found.");
 
-            return new GetBankByResponse
-            {
-                AccountLabel = bank.AccountLabel,
-                Bic = bank.Bic,
-                CountryCode = bank.CountryCode,
-                Iban = bank.Iban,
-                Id = bank.Id,
-                Rib = bank.Rib,
-                EmployeeId = bank.EmployeeId
-            };
+            return bank.ToDto();
         }
     }
 }

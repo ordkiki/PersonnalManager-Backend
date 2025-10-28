@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PersonalManager.Application.Features.Contracts.Command.DeleteContract
+namespace PersonalManager.Application.Features.Employees.Command.DeletePartialEmployee
 {
-    public class DeleteContractCommand : IRequest<bool>
+    public class DeletePartialEmployeeCommand : IRequest<bool>
     {
         public required Guid Id { get; set; }
     }

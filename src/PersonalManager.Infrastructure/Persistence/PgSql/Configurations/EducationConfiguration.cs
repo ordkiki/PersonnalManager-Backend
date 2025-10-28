@@ -16,8 +16,9 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
             base.Configure(builder);
             builder.Property(e => e.Establishment).IsRequired();
             builder.Property(e => e.FieldOfStudy).IsRequired();
-            builder.Property(e => e.GraduationYear);
-            builder.Property(e => e.Graduation).IsRequired();
+            builder.Property(e => e.GraduationYear).IsRequired(true);
+            builder.Property(e => e.Graduation).IsRequired(true);
+            builder.Property(e => e.EmployeeId).IsRequired(false);
 
             builder.HasOne(e => e.Employee).WithMany().HasForeignKey(e => e.EmployeeId).OnDelete(DeleteBehavior.Cascade);
             

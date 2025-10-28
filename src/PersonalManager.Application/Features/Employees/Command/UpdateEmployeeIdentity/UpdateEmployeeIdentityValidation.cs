@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeIdentity
 {
-    public class CreateEmployeeIdentityValidation
+    public class UpdateEmployeeIdentityValidation
     {
     }
 }

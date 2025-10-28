@@ -16,12 +16,14 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 		{
 			base.Configure(builder);
 
-			builder.Property(d => d.DepartmentName).IsRequired();
-			builder.Property(d => d.DepartmentCode);
+			builder.Property(d => d.DepartmentName).IsRequired(true);
+			builder.Property(d => d.DepartmentCode).IsRequired(false);
+			builder.Property(d => d.ParentDepartmentId);
+			builder.HasIndex(d => d.DepartmentCode);
 
             builder.HasMany(e => e.DepartmentsFils)
                     .WithOne()
-                    .HasForeignKey(d => d.ParentDepartmentId)
+                    .HasForeignKey(d => d.ParentDepartmentId).IsRequired(false)
                     .OnDelete(DeleteBehavior.SetNull);
 
         }

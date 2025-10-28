@@ -84,7 +84,7 @@ namespace PersonalManager.Api.Controllers
                 Page = query.Page,
                 Search = query.Search
             });
-            return Ok(new ApiResponse<IEnumerable<Bank>>()
+            return Ok(new ApiResponse<IEnumerable<BankDto>>()
             {
                 Code = 200,
                 Success = true,
@@ -102,9 +102,9 @@ namespace PersonalManager.Api.Controllers
         [HttpGet("ById")]
         public async Task<IActionResult> FindOne([FromQuery] Guid Id)
         {
-            GetBankByResponse result = await _mediator.Send(new GetBankByQuery() { Id = Id });
+            BankDto result = await _mediator.Send(new GetBankByIdQuery() { Id = Id });
 
-            return Ok(new ApiResponse<GetBankByResponse>()
+            return Ok(new ApiResponse<BankDto>()
             {
                 Code = 200,
                 Success = true,
@@ -114,5 +114,5 @@ namespace PersonalManager.Api.Controllers
             });
         }
         
-}
+    }
 }

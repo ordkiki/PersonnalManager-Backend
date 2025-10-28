@@ -7,9 +7,9 @@ using PersonaManager.Domain.ValuesObject;
 
 namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeIdentity
 {
-    public class CreateEmployeeIdentityCommandHandler(IRepositoryCommand<Employee> _repo, IRepositoryQuery<Employee> _repo2, IUnitOfWork _unit, IFileService _file) : IRequestHandler<CreateEmployeeIdentityCommand, CreateEmployeeIdentityResponse>
+    public class UpdateEmployeeIdentityCommandHandler(IRepositoryCommand<Employee> _repo, IRepositoryQuery<Employee> _repo2, IUnitOfWork _unit, IFileService _file) : IRequestHandler<UpdateEmployeeIdentityCommand, UpdateEmployeeIdentityResponse>
     {
-        public async Task<CreateEmployeeIdentityResponse> Handle(CreateEmployeeIdentityCommand request, CancellationToken cancellationToken)
+        public async Task<UpdateEmployeeIdentityResponse> Handle(UpdateEmployeeIdentityCommand request, CancellationToken cancellationToken)
         {
             Employee? employee = await _repo2.FindByIdAsync(request.EmployeeId, cancellationToken) ??
     throw new ApiException("No employee was found", 400, false);
@@ -32,7 +32,7 @@ namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeI
 
             Employee? updatedEmployee = await _repo.UpdateAsync(request.EmployeeId, employee);
             await _unit.SaveChangesAsync(cancellationToken);
-            return new CreateEmployeeIdentityResponse()
+            return new UpdateEmployeeIdentityResponse()
             {
                 Id = updatedEmployee.Id,
                 LastName = updatedEmployee.Identity!.LastName,

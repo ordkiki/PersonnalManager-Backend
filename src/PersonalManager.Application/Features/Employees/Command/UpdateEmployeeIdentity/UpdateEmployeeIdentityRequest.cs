@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace PersonalManager.Application.Features.Employees.Command.CreateEmployeeIdentity
 {
-    public class CreateEmployeeIdentityResponse
+    public class UpdateEmployeeIdentityRequest
     {
-        public Guid Id { get; set; }
         public string? FirstName { get; set; }
         public string? LastName { get; set; }
         public DateTime? BirthDate { get; set; }
