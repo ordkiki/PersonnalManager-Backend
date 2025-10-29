@@ -17,7 +17,6 @@ namespace PersonalManager.Api.Controllers
     [Route("[controller]")]
     public class BankController(IMediator _mediator) : ControllerBase
     {
-
         [HttpPost("{EmployeeId}")]
         public async Task<IActionResult> Create([FromRoute] Guid EmployeeId, [FromForm] CreateBankRequest request)
         {

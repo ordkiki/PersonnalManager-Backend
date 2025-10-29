@@ -14,15 +14,16 @@ namespace PersonalManager.Infrastructure.Persistence.PgSql.Configurations
 		public virtual void Configure(EntityTypeBuilder<T> builder)
 		{
 			builder.HasKey(x => x.Id);
-
+			builder.Property(x => x.Id).IsRequired(true);
+			builder.Property(x => x.IsDeleted).IsRequired(true);
 			builder.Property(x => x.CreatedAt)
-				.IsRequired()
+				.IsRequired(true)
 				.HasDefaultValueSql("NOW() AT TIME ZONE 'UTC'")
 				//.HasDefaultValueSql("NOW() AT TIME ZONE 'UTC'")
 				.ValueGeneratedOnAdd();
 
 			builder.Property(x => x.UpdatedAt);
-			builder.Property(x => x.IsDeleted).IsRequired(true).HasDefaultValue(false);
+			builder.Property(x => x.IsDeleted).IsRequired(true).HasDefaultValue("false");
 			
 		}
 	}

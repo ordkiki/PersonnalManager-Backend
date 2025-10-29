@@ -5,6 +5,7 @@ using PersonalManager.Application.Features.Employees.Command.CreateEmployeeAdres
 using PersonalManager.Application.Features.Employees.Command.CreateEmployeeBadge;
 using PersonalManager.Application.Features.Employees.Command.CreateEmployeeIdentity;
 using PersonalManager.Application.Features.Employees.Command.DeleteEmployee;
+using PersonalManager.Application.Features.Employees.Command.DeletePartialEmployee;
 using PersonalManager.Application.Features.Employees.Command.UpdateEmployeeAvatar;
 using PersonalManager.Application.Features.Employees.Command.UpdateEmployeeStatus;
 using PersonalManager.Application.Features.Employees.Query.GetAllEmployees;
@@ -105,10 +106,10 @@ namespace PersonalManager.Api.Controllers
                 Success = true
             });
         }
-        [HttpPut("{EmployeeId}")]
+        [HttpPut("DeletePartial/{EmployeeId}")]
         public async Task<IActionResult> DeletePartial([FromRoute] Guid EmployeeId)
         {
-            await _mediator.Send(new DeleteEmployeeCommand() { Id = EmployeeId });
+            await _mediator.Send(new DeletePartialEmployeeCommand() { Id = EmployeeId });
 
             return Ok(new ApiResponse<Employee>
             {

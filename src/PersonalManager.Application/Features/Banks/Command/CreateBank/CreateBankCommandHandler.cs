@@ -24,7 +24,7 @@ namespace PersonalManager.Application.Features.Banks.Command.CreateBank
                 throw new ArgumentException("Bank with this IBAN already exists");
             };
 
-            Bank bank = new ()
+            Bank bank = new()
             {
                 Rib = request.Rib!,
                 Iban = request.Iban!,
